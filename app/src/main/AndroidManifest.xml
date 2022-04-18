@@ -33,13 +33,10 @@
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <service android:name="com.amap.api.location.APSService" />
-
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="183c717cda0b83b0fe88b404351f94cf" />
