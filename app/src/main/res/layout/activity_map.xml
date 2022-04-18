@@ -7,12 +7,7 @@
     android:orientation="vertical"
     tools:context=".Activity.MapActivity">
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/tvR"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content" />-->
-
-    <xyz.taouvw.mysdutools.MyView.CircleView
+    <xyz.taouvw.mysdutools.MyView.PinView
         android:id="@+id/map2"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

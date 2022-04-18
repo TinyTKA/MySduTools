@@ -8,7 +8,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,12 +21,11 @@ import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import java.io.IOException;
 import java.util.Properties;
 
-import xyz.taouvw.mysdutools.MyView.CircleView;
 import xyz.taouvw.mysdutools.MyView.PinView;
 import xyz.taouvw.mysdutools.R;
 
 public class MapActivity extends CheckPermissionsActivity {
-    CircleView map;
+    PinView map;
     private TextView tvResult;
     Double longitude;   //经度
     Double latitude;    //纬度
@@ -86,7 +84,7 @@ public class MapActivity extends CheckPermissionsActivity {
             return;
         }
         positionXY.set(Float.parseFloat(properties.getProperty("leftUpX")), Float.parseFloat(properties.getProperty("leftUpY")));
-//        map.setXY(positionXY);
+        map.setToxy(positionXY);
 
         //初始化传感器
         sm = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -94,12 +92,6 @@ public class MapActivity extends CheckPermissionsActivity {
         sm.registerListener(new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
-                //float angle = sensorEvent.values[0];
-//                if (Math.abs(angle - lastAngle) > 0.5) {
-//                    map.setMyOrientation(angle);
-//                    Log.e("旋转角度", "onSensorChanged: "+angle);
-//                }
-//                lastAngle = angle;
                 if (count == 10) {
                     int average = 0;
                     count = 0;
@@ -108,7 +100,7 @@ public class MapActivity extends CheckPermissionsActivity {
                     }
                     average /= sensorValue.length;
 
-                    map.setMyOrientation(average);
+                    map.setOri(average);
                 } else {
                     sensorValue[count] = sensorEvent.values[0];
                     count++;
@@ -145,7 +137,6 @@ public class MapActivity extends CheckPermissionsActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -183,7 +174,7 @@ public class MapActivity extends CheckPermissionsActivity {
                     latitude = location.getLatitude();
                     angle = location.getBearing();
                     speed = location.getSpeed();
-                    if (count2 == 3) {
+                    if (count2 == 2) {
                         double averageLa = 0f;
                         double averageLo = 0f;
                         count2 = 0;
@@ -194,9 +185,9 @@ public class MapActivity extends CheckPermissionsActivity {
                         averageLa /= locationValueLa.length;
                         averageLo /= locationValueLo.length;
                         PointF position = getPosition(averageLo, averageLa);
-                        map.setXY(position);
-                        Log.e("经纬度", "onLocationChanged: " + longitude + "  " + latitude);
-                        Log.e("坐标", "onLocationChanged: " + position.x + "  " + position.y);
+                        map.setPin(position);
+//                        Log.e("经纬度", "onLocationChanged: " + longitude + "  " + latitude);
+//                        Log.e("坐标", "onLocationChanged: " + position.x + "  " + position.y);
                     } else {
                         locationValueLa[count2] = latitude;
                         locationValueLo[count2] = longitude;
