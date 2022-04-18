@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="n10_10_12_00">第二节\n10:10-12:00</string>
+    <string name="n14_00_15_50">第三节\n14:00-15:50</string>
+    <string name="n16_10_18_00">第四节\n16:10-18:00</string>
+    <string name="n19_00_20_50">第五节\n19:00-20:50</string>
+</resources>

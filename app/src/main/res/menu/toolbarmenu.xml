@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/refresh_kb"
+        android:title="@string/refresh_kb"/>
+    <item
+        android:id="@+id/StartDay"
+        android:title="@string/startDate"/>
+    <item
+        android:id="@+id/remove_weekend"
+        android:title="@string/remove_weekend"/>
+    <item
+        android:id="@+id/show_weekend"
+        android:title="@string/show_weekend"/>
+</menu>

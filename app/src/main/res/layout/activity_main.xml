@@ -1,0 +1,863 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LeftDrag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.MainActivity"
+    tools:openDrawer="start">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+            app:subtitle="@string/oneWords"
+
+            app:title="@string/mykb">
+
+            <ImageView
+                android:id="@+id/arrow_week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:paddingLeft="10dp"
+                android:src="@drawable/ic_baseline_expand_less_24" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/week_selector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TableLayout
+            android:id="@+id/kb_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:id="@+id/Class"
+                android:paddingTop="2dp"
+
+                android:paddingBottom="2dp">
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k0_0"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:height="50dp"
+                    android:background="@drawable/textviewborder"
+                    android:gravity="center"
+                    android:text=" "
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:solidColor="@color/snow"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k1"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="周一"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:solidColor="@color/snow"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+
+                    android:gravity="center"
+                    android:text="周二"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:solidColor="@color/snow"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k3"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="周三"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:solidColor="@color/snow"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k4"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="周四"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:solidColor="@color/snow"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k5"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="周五"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:solidColor="@color/snow"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k7"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="周六"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:solidColor="@color/snow"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k8"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:background="@drawable/textviewborder"
+                    android:gravity="center"
+                    android:text="周日"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:solidColor="@color/snow"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/FirstClass"
+                android:layout_weight="1"
+                android:paddingBottom="2dp">
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k1_0"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:background="@drawable/textviewborder"
+                    android:gravity="center"
+                    android:text="@string/n8_00_9_50"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:solidColor="@color/snow"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k1_1"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k2_1"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k3_1"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k4_1"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k5_1"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+
+                    android:id="@+id/k6_1"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k7_1"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/SecondClass"
+                android:layout_weight="1"
+                android:paddingBottom="2dp">
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k2_0"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:background="@drawable/textviewborder"
+                    android:gravity="center"
+                    android:text="@string/n10_10_12_00"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:solidColor="@color/snow"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k1_2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k2_2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k3_2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k4_2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k5_2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k6_2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k7_2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/ThirdClass"
+
+                android:layout_weight="1"
+                android:paddingBottom="2dp">
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k3_0"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/n14_00_15_50"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:solidColor="@color/snow"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k1_3"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k2_3"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k3_3"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k4_3"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k5_3"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k6_3"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k7_3"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/FourthClass"
+                android:layout_weight="1"
+                android:paddingBottom="2dp">
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k4_0"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:background="@drawable/textviewborder"
+                    android:gravity="center"
+                    android:text="@string/n16_10_18_00"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:solidColor="@color/snow"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k1_4"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k2_4"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k3_4"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k4_4"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k5_4"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k6_4"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k7_4"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/FifthClass"
+                android:layout_weight="1"
+                android:paddingBottom="2dp">
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k5_0"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:background="@drawable/textviewborder"
+                    android:gravity="center"
+                    android:text="@string/n19_00_20_50"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:solidColor="@color/snow"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k1_5"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k2_5"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k3_5"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k4_5"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k5_5"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k6_5"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+
+                <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                    android:id="@+id/k7_5"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/kbMarginLeft"
+                    android:layout_marginRight="@dimen/kbMarginRight"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/kb_text_size"
+                    app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                    app:bottomRightRadius="@dimen/BottomRightRadius"
+                    app:strokeColor="@color/gray"
+                    app:strokeWidth="@dimen/borderWidth"
+                    app:topLeftRadius="@dimen/TopLeftRadius"
+                    app:topRightRadius="@dimen/TopRightRadius" />
+            </TableRow>
+
+
+        </TableLayout>
+        <!--        <androidx.viewpager2.widget.ViewPager2-->
+        <!--            android:id="@+id/vp"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent" />-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="156dp"
+                android:background="@drawable/qd"
+                android:scaleType="matrix" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom"
+                android:alpha="0.6"
+                android:background="@color/gray"
+                android:gravity="center_vertical"
+                android:text="@string/app_name" />
+        </FrameLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/OptionsList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

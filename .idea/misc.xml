@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/drawable/textviewborder.xml" value="0.264" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/activity_about.xml" value="0.264" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/activity_gd.xml" value="0.25885416666666666" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/activity_location.xml" value="0.10104166666666667" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/activity_map.xml" value="0.1" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/activity_web.xml" value="0.25885416666666666" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/datepicker.xml" value="0.2545289855072464" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/fragment_kb.xml" value="0.25885416666666666" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/kb.xml" value="0.536" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/kb2.xml" value="0.25885416666666666" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/more_optionlist.xml" value="0.25885416666666666" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/opensource.xml" value="0.25885416666666666" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/option_list.xml" value="0.25885416666666666" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/optionlist.xml" value="0.25885416666666666" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/plugin_location_option.xml" value="0.10104166666666667" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/week_list.xml" value="0.25885416666666666" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/menu/toolbarmenu.xml" value="0.25885416666666666" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
