@@ -46,7 +46,8 @@ public class CircleView extends SubsamplingScaleImageView {
 
     private void getRotatePin() {
         Matrix m = new Matrix();
-        m.setRotate(orientation);
+        m.setRotate(orientation, pin.getWidth() / 2, pin.getHeight() / 2);
+        m.postScale(1, 1);
         RotatePin = Bitmap.createBitmap(pin, 0, 0, 100, 100, m, false);
     }
 
@@ -56,6 +57,7 @@ public class CircleView extends SubsamplingScaleImageView {
     }
 
     public void setXY(PointF p) {
+
         this.Toxy.x = p.x;
         this.Toxy.y = p.y;
     }
@@ -68,6 +70,8 @@ public class CircleView extends SubsamplingScaleImageView {
         if (!isReady()) {
             return;
         }
+//        Toxy.x = 2905;
+//        Toxy.y = 937;
         PointF vxy;
         if (Toxy.x != 0 || Toxy.y != 0) {
             if (getScale() >= 0.5 && getScale() <= 1) {

@@ -37,7 +37,7 @@ public class MapActivity extends CheckPermissionsActivity {
     DisplayMetrics dm;
     Properties properties = new Properties();
     PointF positionXY;
-
+    float lastAngle = 0f;
     PointF[] positionXYs;
     PointF[] positionLALTs;
     PointF pointF = new PointF();
@@ -94,6 +94,12 @@ public class MapActivity extends CheckPermissionsActivity {
         sm.registerListener(new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
+                //float angle = sensorEvent.values[0];
+//                if (Math.abs(angle - lastAngle) > 0.5) {
+//                    map.setMyOrientation(angle);
+//                    Log.e("旋转角度", "onSensorChanged: "+angle);
+//                }
+//                lastAngle = angle;
                 if (count == 10) {
                     int average = 0;
                     count = 0;
@@ -101,6 +107,7 @@ public class MapActivity extends CheckPermissionsActivity {
                         average += sensorValue[i];
                     }
                     average /= sensorValue.length;
+
                     map.setMyOrientation(average);
                 } else {
                     sensorValue[count] = sensorEvent.values[0];
