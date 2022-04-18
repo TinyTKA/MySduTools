@@ -89,11 +89,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //初始化
         init();
 
     }
 
     void init() {
+        //获取屏幕像素信息
         resources = this.getResources();
         dm = resources.getDisplayMetrics();
         screenHeight = dm.heightPixels;
@@ -107,13 +109,14 @@ public class MainActivity extends AppCompatActivity {
         OptionsRecycle = this.findViewById(R.id.OptionsList);
         week_arrow = this.findViewById(R.id.arrow_week);
         kb_layout = this.findViewById(R.id.kb_layout);
+
+        //读取开学日期信息
         preferenceUtils = new SharedPreferenceUtils(MainActivity.this, "values");
         //读取学期开始
         startOfStudy = preferenceUtils.read("startOfStudyYear", "2022") + "年" + preferenceUtils.read("startOfStudyMonth", "02") + "月" + preferenceUtils.read("startOfStudyDay", "20") + "日";
         preferenceUtils.commit();
         //获取学期信息
         dateInfo = DateUtils.getDayAndWeek(startOfStudy);
-        Log.e("TAG", "init: " + startOfStudy);
         // 给toolbar添加menu以及监听
         tb.inflateMenu(R.menu.toolbarmenu);
         tb.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -122,13 +125,11 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.refresh_kb: {
-                        // TODO: 2022/4/6 点击刷新课程表跳转webView页面
                         Intent intent = new Intent(getApplicationContext(), WebActivity.class);
                         startActivity(intent);
                     }
                     break;
                     case R.id.StartDay: {
-                        // TODO: 2022/4/6 点击切换当前周
                         DatePickerDialog datePicker = null;
                         Calendar calendar = Calendar.getInstance();
                         StringBuilder stringBuilder = new StringBuilder();
@@ -150,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                                     stringBuilder.append(dayOfMonth);
                                     stringBuilder.append("日");
                                     startOfStudy = stringBuilder.toString();
-
+                                    //保存开学日期信息
                                     preferenceUtils.save("startOfStudyYear", year + "");
                                     preferenceUtils.save("startOfStudyMonth", monthOfYear + "");
                                     preferenceUtils.save("startOfStudyDay", dayOfMonth + "");
@@ -192,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
                 mdrawlayout.openDrawer(Gravity.LEFT);
             }
         });
+        // toolbar图标状态
         tb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -218,6 +220,8 @@ public class MainActivity extends AppCompatActivity {
         OptionsRecycle.setLayoutManager(linearLayoutManager);
         OptionsRecycle.setAdapter(optionsAdapter);
         OptionsRecycle.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+
+        // 课表格式
         tableRows[0] = this.findViewById(R.id.Class);
         tableRows[1] = this.findViewById(R.id.FirstClass);
         tableRows[2] = this.findViewById(R.id.SecondClass);
@@ -252,27 +256,26 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < count; i++) {
             if (classinfo.moveToPosition(i)) {
                 ClassDetail classDetail = new ClassDetail();
-
-
                 classDetail.setName(classinfo.getString(classinfo.getColumnIndex("classname")));
                 classDetail.setRoom(classinfo.getString(classinfo.getColumnIndex("classroom")));
                 classDetail.setTeacher(classinfo.getString(classinfo.getColumnIndex("teacher")));
                 classDetail.setWeek(classinfo.getString(classinfo.getColumnIndex("weekR")));
                 classDetail.setWhichDay(Integer.parseInt(classinfo.getString(classinfo.getColumnIndex("whichday"))));
                 classDetail.setWhichjie(Integer.parseInt(classinfo.getString(classinfo.getColumnIndex("whichjie"))));
+                //保存到数据库里的是字符串，需要做分割
                 classDetail.setWeekRan(classinfo.getString(classinfo.getColumnIndex("weekrange")).split(","));
                 classDetail.setRange(classinfo.getString(classinfo.getColumnIndex("classTime")).split(","));
                 classDetailList.add(classDetail);
             }
         }
         classinfo.close();
-
+        //渲染信息到课表页面
         putClassesIn(classDetailList, dateInfo[0]);
     }
 
     private void putClassesIn(List<ClassDetail> list, int mNowWeek) {
         initKb();
-        Log.e("当前周", "putClassesIn: " + mNowWeek);
+//        Log.e("当前周", "putClassesIn: " + mNowWeek);
         Random random = new Random();
         int whichDay;
         int whichjie;
@@ -289,6 +292,7 @@ public class MainActivity extends AppCompatActivity {
 
             String[] weekRan = classDetail.getWeekRan();
             if (weekRan.length <= 2) {
+                // 替换掉所有的中括号以及空格，防止解析错误
                 if (mNowWeek < Integer.parseInt(weekRan[0].replaceAll("(\\[|\\]|\\s*)", "")) || mNowWeek > Integer.parseInt(weekRan[1].replaceAll("(\\[|\\]|\\s*)", ""))) {
                     virtualChildAt.setBackgroundResource(R.drawable.textviewborder);
                     virtualChildAt.setText("");
@@ -298,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
                     sb.append("\n");
                     sb.append(classDetail.getRoom());
                     virtualChildAt.setText(sb.toString());
-                    sb.delete(0, sb.length() - 1);
+                    sb.delete(0, sb.length());
                 }
             } else {
                 for (int j = 0; j < weekRan.length; j++) {
