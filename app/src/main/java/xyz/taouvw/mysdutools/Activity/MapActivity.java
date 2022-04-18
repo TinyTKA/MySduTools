@@ -8,6 +8,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,8 +51,8 @@ public class MapActivity extends CheckPermissionsActivity {
     Sensor mSensorOrientation;
     float[] sensorValue = new float[10];
     int count = 0;
-    double[] locationValueLa = new double[3];
-    double[] locationValueLo = new double[3];
+    double[] locationValueLa = new double[2];
+    double[] locationValueLo = new double[2];
     int count2 = 0;
 
     @Override
@@ -186,8 +187,8 @@ public class MapActivity extends CheckPermissionsActivity {
                         averageLo /= locationValueLo.length;
                         PointF position = getPosition(averageLo, averageLa);
                         map.setPin(position);
-//                        Log.e("经纬度", "onLocationChanged: " + longitude + "  " + latitude);
-//                        Log.e("坐标", "onLocationChanged: " + position.x + "  " + position.y);
+                        Log.e("经纬度", "onLocationChanged: " + averageLo + "  " + averageLa);
+                        Log.e("坐标", "onLocationChanged: " + position.x + "  " + position.y);
                     } else {
                         locationValueLa[count2] = latitude;
                         locationValueLo[count2] = longitude;
