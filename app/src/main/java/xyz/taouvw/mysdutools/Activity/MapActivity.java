@@ -320,6 +320,9 @@ public class MapActivity extends CheckPermissionsActivity {
         }
         pointF.x = (float) (positionXYs[2].x + (longitude - positionLALTs[2].x) * ((positionXYs[3].x - positionXYs[2].x) / (positionLALTs[3].x - positionLALTs[2].x)));
         pointF.y = (float) (positionXYs[3].y - (latitude - positionLALTs[3].y) * ((positionXYs[3].y - positionXYs[1].y) / (positionLALTs[1].y - positionLALTs[3].y)));
+        pointF.x += 55;
+        pointF.y += 145;
+
         return pointF;
     }
 
