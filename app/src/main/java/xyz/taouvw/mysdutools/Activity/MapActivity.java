@@ -151,7 +151,7 @@ public class MapActivity extends CheckPermissionsActivity {
         mOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);//可选，设置定位模式，可选的模式有高精度、仅设备、仅网络。默认为高精度模式
         mOption.setGpsFirst(false);//可选，设置是否gps优先，只在高精度模式下有效。默认关闭
         mOption.setHttpTimeOut(30000);//可选，设置网络请求超时时间。默认为30秒。在仅设备模式下无效
-        mOption.setInterval(1000);//可选，设置定位间隔。默认为2秒
+        mOption.setInterval(1500);//可选，设置定位间隔。默认为2秒
         mOption.setNeedAddress(true);//可选，设置是否返回逆地理地址信息。默认是true
         mOption.setOnceLocation(false);//可选，设置是否单次定位。默认是false
         mOption.setOnceLocationLatest(false);//可选，设置是否等待wifi刷新，默认为false.如果设置为true,会自动变为单次定位，持续定位时不要使用
@@ -175,27 +175,29 @@ public class MapActivity extends CheckPermissionsActivity {
                     latitude = location.getLatitude();
                     angle = location.getBearing();
                     speed = location.getSpeed();
-                    if (count2 == 2) {
-                        double averageLa = 0f;
-                        double averageLo = 0f;
-                        count2 = 0;
-                        for (int i = 0; i < locationValueLa.length; i++) {
-                            averageLo += locationValueLo[i];
-                            averageLa += locationValueLa[i];
-                        }
-                        averageLa /= locationValueLa.length;
-                        averageLo /= locationValueLo.length;
-                        PointF position = getPosition(averageLo, averageLa);
-                        map.setPin(position);
-                        Log.e("经纬度", "onLocationChanged: " + averageLo + "  " + averageLa);
-                        Log.e("坐标", "onLocationChanged: " + position.x + "  " + position.y);
-                    } else {
-                        locationValueLa[count2] = latitude;
-                        locationValueLo[count2] = longitude;
-                        count2++;
-                    }
+//                    if (count2 == 2) {
+//                        double averageLa = 0f;
+//                        double averageLo = 0f;
+//                        count2 = 0;
+//                        for (int i = 0; i < locationValueLa.length; i++) {
+//                            averageLo += locationValueLo[i];
+//                            averageLa += locationValueLa[i];
+//                        }
+//                        averageLa /= locationValueLa.length;
+//                        averageLo /= locationValueLo.length;
+//                        PointF position = getPosition(averageLo, averageLa);
+//                        map.setPin(position);
 
-//                    tvResult.setText("经度:" + longitude + "   纬度：" + latitude);
+//                    } else {
+//                        locationValueLa[count2] = latitude;
+//                        locationValueLo[count2] = longitude;
+//                        count2++;
+//                    }
+
+                    PointF position = getPosition(longitude, latitude);
+                    Log.e("经纬度", "onLocationChanged: " + longitude + "  " + latitude);
+                    Log.e("坐标", "onLocationChanged: " + position.x + "  " + position.y);
+                    map.setPin(position);
 
                     //定位完成的时间
                 } else {
@@ -303,20 +305,21 @@ public class MapActivity extends CheckPermissionsActivity {
         positionXYs[4] = new PointF();
         positionLALTs[4] = new PointF();
         positionXYs[4].set(Float.parseFloat(properties.getProperty("eastX")), Float.parseFloat(properties.getProperty("eastY")));
-        positionLALTs[4].set(Float.parseFloat(properties.getProperty("eastLatitude")), Float.parseFloat(properties.getProperty("eastLongitude")));
+        positionLALTs[4].set(Float.parseFloat(properties.getProperty("eastLongitude")), Float.parseFloat(properties.getProperty("eastLatitude")));
 
     }
 
     private PointF getPosition(Double Longitude, Double latitude) {
         PointF pointF = new PointF();
-        if (Longitude > positionLALTs[1].x || Longitude < positionLALTs[2].x || latitude > positionLALTs[1].y || latitude < positionLALTs[3].y) {
+
+        if (Longitude > positionLALTs[3].x || Longitude < positionLALTs[2].x || latitude > positionLALTs[1].y || latitude < positionLALTs[3].y) {
             Toast.makeText(getApplicationContext(), "您已经出校！无法定位", Toast.LENGTH_SHORT).show();
             pointF.x = 0;
             pointF.y = 0;
             return pointF;
         }
         pointF.x = (float) (positionXYs[2].x + (longitude - positionLALTs[2].x) * ((positionXYs[3].x - positionXYs[2].x) / (positionLALTs[3].x - positionLALTs[2].x)));
-        pointF.y = (float) (positionXYs[3].y + (latitude - positionLALTs[3].y) * ((positionXYs[1].y - positionXYs[3].y) / (positionLALTs[1].y - positionLALTs[3].y)));
+        pointF.y = (float) (positionXYs[3].y - (latitude - positionLALTs[3].y) * ((positionXYs[3].y - positionXYs[1].y) / (positionLALTs[1].y - positionLALTs[3].y)));
         return pointF;
     }
 
