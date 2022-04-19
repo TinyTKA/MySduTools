@@ -42,49 +42,23 @@ public class PropertiesUtils {
         return this;
     }
 
-    public void commit() {
-        try {
-            File file = new File("/assets/" + mFile);
-            OutputStream os = new FileOutputStream(file);
-            mProp.store(os, "");
-            os.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        mProp.clear();
-    }
 
     public void clear() {
         mProp.clear();
-    }
-
-    public void writeString(String name, String value) {
-        mProp.setProperty(name, value);
     }
 
     public String readString(String name, String defaultValue) {
         return mProp.getProperty(name, defaultValue);
     }
 
-    public void writeInt(String name, int value) {
-        mProp.setProperty(name, "" + value);
-    }
-
     public int readInt(String name, int defaultValue) {
         return Integer.parseInt(mProp.getProperty(name, "" + defaultValue));
-    }
-
-    public void writeBoolean(String name, boolean value) {
-        mProp.setProperty(name, "" + value);
     }
 
     public boolean readBoolean(String name, boolean defaultValue) {
         return Boolean.parseBoolean(mProp.getProperty(name, "" + defaultValue));
     }
 
-    public void writeDouble(String name, double value) {
-        mProp.setProperty(name, "" + value);
-    }
 
     public double readDouble(String name, double defaultValue) {
         return Double.parseDouble(mProp.getProperty(name, "" + defaultValue));
