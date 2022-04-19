@@ -19,6 +19,7 @@ public class PinView extends SubsamplingScaleImageView {
     private final PointF vPin = new PointF();
     private PointF sPin;
     private Bitmap pin;
+    private final Bitmap rawPin = BitmapFactory.decodeResource(this.getResources(), R.mipmap.arrow);
     private float ori;
     private PointF Toxy = new PointF();
 
@@ -51,7 +52,7 @@ public class PinView extends SubsamplingScaleImageView {
 
     private void initialise() {
         float density = getResources().getDisplayMetrics().densityDpi;
-        pin = BitmapFactory.decodeResource(this.getResources(), R.mipmap.arrow);
+        pin = rawPin;
         float w = (density / 420f) * pin.getWidth();
         float h = (density / 420f) * pin.getHeight();
         Matrix m = new Matrix();
