@@ -183,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
                     default:
                         break;
                 }
-
                 return true;
             }
         });
@@ -291,6 +290,7 @@ public class MainActivity extends AppCompatActivity {
             virtualChildAt.setMaxWidth(screenWidth / 8);
 
             String[] weekRan = classDetail.getWeekRan();
+            // 连续上课情况
             if (weekRan.length <= 2) {
                 // 替换掉所有的中括号以及空格，防止解析错误
                 if (mNowWeek < Integer.parseInt(weekRan[0].replaceAll("(\\[|\\]|\\s*)", "")) || mNowWeek > Integer.parseInt(weekRan[1].replaceAll("(\\[|\\]|\\s*)", ""))) {
@@ -305,8 +305,8 @@ public class MainActivity extends AppCompatActivity {
                     sb.delete(0, sb.length());
                 }
             } else {
+                // 隔周上课的情况
                 for (int j = 0; j < weekRan.length; j++) {
-
                     int m = Integer.parseInt(weekRan[j].replaceAll("(\\[|\\]|\\s*)", ""));
                     if (mNowWeek == m) {
                         virtualChildAt.setBackgroundResource(color[random.nextInt(9)]);
@@ -322,9 +322,28 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             }
+            ShapeTextView finalVirtualChildAt = virtualChildAt;
+            virtualChildAt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle("详情");
+                    CharSequence text = finalVirtualChildAt.getText();
+                    builder.setMessage(text);
+                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
+            });
         }
     }
 
+    //设置课表格式
     private void initKb() {
         for (int i = 0; i < 8; i++) {
             ShapeTextView weekend = (ShapeTextView) tableRows[0].getVirtualChildAt(i);
@@ -337,6 +356,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    // 初始化周选择器，选择开学日期后将重新调用
     private void InitKbList(int nowWeek) {
         WeekAdapter weekAdapter = new WeekAdapter(nowWeek);
         weekAdapter.setItemClickListener(new WeekAdapter.MyItemClickListener() {
