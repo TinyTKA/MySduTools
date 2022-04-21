@@ -39,7 +39,8 @@ public class SQLUtils extends SQLiteOpenHelper {
                 "whichday VARCHAR(30)," +
                 "whichjie VARCHAR(30)," +
                 "weekrange VARCHAR(30)," +
-                "classTime VARCHAR(30)" +
+                "classTime VARCHAR(30)," +
+                "classcode VARCHAR(30)" +
                 "); ");
     }
 
