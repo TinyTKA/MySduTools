@@ -72,7 +72,7 @@ public class ClassDetail {
         return "课程名：" + name + '\n' +
                 "教师名称：" + teacher + '\n' +
                 "上课周：" + week + '\n' +
-                "上课教师：" + room + '\n' +
+                "上课教室：" + room + '\n' +
                 "上课时间:周" + whichDay +
                 "第" + whichjie +
                 "节\n 上课周：" + Arrays.toString(WeekRan) +
@@ -137,8 +137,13 @@ public class ClassDetail {
     }
 
     private void processWeek() {
+
+
         int i = 0;
         i = weekRange.size();
+        if (i == 0) {
+            return;
+        }
         range = new String[]{weekRange.get(i - 2), weekRange.get(i - 1)};
         if (i >= 4) {
             WeekRan = new String[i - 2];

@@ -4,138 +4,116 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
-
-        <EditText
-            android:id="@+id/newClass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="添加课程名"
-            android:maxLength="25"
-            android:maxLines="1" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
-
-        <EditText
-            android:id="@+id/Classroom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="上课地点"
-            android:maxLength="25"
-            android:maxLines="1" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
-
-        <EditText
-            android:id="@+id/newTeacherName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="任课老师"
-            android:maxLength="25"
-            android:maxLines="1" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:text="选择上课周数"
-        android:textSize="20sp" />
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="50dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
 
         <TableRow>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/ChoseSingleWeek"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="选择单周" />
+                android:layout_height="40dp"
+
+                android:layout_weight="1"
+                android:background="@color/darkseagreen"
+                android:text="选择单周"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/ChoseDoubleWeek"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
-                android:text="选择双周" />
+                android:layout_weight="1"
+                android:background="@color/darkseagreen"
+                android:text="选择双周"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/Chose_1_8_Week"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
-                android:text="选择1-8周" />
+                android:layout_weight="1"
+                android:background="@color/darkseagreen"
+                android:text="选择1-8周"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/Chose_9_16_Week"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
-                android:text="选择9-16周" />
+
+                android:layout_weight="1"
+                android:background="@color/darkseagreen"
+                android:text="选择9-16周"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
         </TableRow>
     </TableLayout>
 
-
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp">
 
         <TableRow
             android:id="@+id/NewClassWeekList_1"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="5dp"
             android:layout_weight="1">
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="第1周"
+                android:text="1"
                 android:theme="@style/MyCheckBox" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="第1周"
+                android:text="1"
+                android:theme="@style/MyCheckBox" />
+
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1"
                 android:theme="@style/MyCheckBox" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="第1周"
+                android:text="1"
                 android:theme="@style/MyCheckBox" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="第1周"
+                android:text="1"
                 android:theme="@style/MyCheckBox" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="第1周"
+                android:text="1"
                 android:theme="@style/MyCheckBox" />
 
 
@@ -143,16 +121,16 @@
 
         <TableRow
             android:id="@+id/NewClassWeekList_2"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="5dp"
             android:layout_weight="1">
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="第1周"
+                android:text="1"
                 android:theme="@style/MyCheckBox" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
@@ -160,72 +138,86 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
 
-                android:text="第1周"
+                android:text="1"
                 android:theme="@style/MyCheckBox" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="第1周"
+                android:text="1"
                 android:theme="@style/MyCheckBox" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="第1周"
+                android:text="1"
                 android:theme="@style/MyCheckBox" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="第1周"
+                android:text="1"
+                android:theme="@style/MyCheckBox" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1"
                 android:theme="@style/MyCheckBox" />
 
         </TableRow>
 
         <TableRow
             android:id="@+id/NewClassWeekList_3"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="5dp"
             android:layout_weight="1">
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="第1周"
+                android:text="1"
                 android:theme="@style/MyCheckBox" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="第1周"
+                android:text="1"
                 android:theme="@style/MyCheckBox" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="第1周"
+                android:text="1"
                 android:theme="@style/MyCheckBox" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="第1周"
+                android:text="1"
                 android:theme="@style/MyCheckBox" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="第1周"
+                android:text="1"
+                android:theme="@style/MyCheckBox" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1"
                 android:theme="@style/MyCheckBox" />
 
 
@@ -233,48 +225,53 @@
 
         <TableRow
             android:id="@+id/NewClassWeekList_4"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="5dp"
             android:layout_weight="1">
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="第1周"
+                android:text="1"
                 android:theme="@style/MyCheckBox" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="第1周"
+                android:text="1"
                 android:theme="@style/MyCheckBox" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="第1周"
+                android:text="1"
                 android:theme="@style/MyCheckBox" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="第1周"
+                android:text="1"
                 android:theme="@style/MyCheckBox" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="第1周"
+                android:text="1"
+                android:theme="@style/MyCheckBox" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1"
                 android:theme="@style/MyCheckBox" />
 
         </TableRow>
     </TableLayout>
-
-
 </LinearLayout>

@@ -92,6 +92,33 @@ public class MainActivity extends AppCompatActivity {
         public void onActivityResult(ActivityResult result) {
             Intent data = result.getData();
             int resultCode = result.getResultCode();
+            switch (resultCode) {
+                case 0: {
+                    Toast.makeText(MainActivity.this, "取消添加", Toast.LENGTH_SHORT).show();
+                }
+                break;
+                case 1: {
+                    ClassDetail classDetail = new ClassDetail();
+                    classDetail.setClassCode("self");
+                    classDetail.setName(data.getStringExtra("classname"));
+                    classDetail.setRoom(data.getStringExtra("classroom"));
+                    classDetail.setTeacher(data.getStringExtra("classteacher"));
+                    String weekrange = data.getStringExtra("weekrange");
+                    classDetail.setWeekRan(weekrange.substring(0, weekrange.length() - 1).split(","));
+                    classDetail.setWhichDay(Integer.parseInt(data.getStringExtra("whichday")));
+                    classDetail.setWhichjie(Integer.parseInt(data.getStringExtra("whichjie")));
+                    Log.e("TAG", "onActivityResult: " + classDetail.toString());
+
+                    SQLUtils sqlUtils = new SQLUtils(MainActivity.this, "class.db", null, propertiesUtils.readInt("DATABASE_VERSION", 1));
+                    sqlUtils.addMyOwnClass(classDetail);
+                    reShowKb();
+                }
+                break;
+                case 2: {
+                    reShowKb();
+                }
+                break;
+            }
         }
     });
 
@@ -141,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (id) {
                     case R.id.refresh_kb: {
                         Intent intent = new Intent(getApplicationContext(), WebActivity.class);
-                        startActivity(intent);
+                        launcher.launch(intent);
                     }
                     break;
                     case R.id.StartDay: {
@@ -246,7 +273,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @SuppressLint("Range")
     @Override
     protected void onResume() {
         super.onResume();
@@ -254,13 +280,19 @@ public class MainActivity extends AppCompatActivity {
         if (classDetailList.size() != 0) {
             return;
         }
+        reShowKb();
+    }
+
+    @SuppressLint("Range")
+    private void reShowKb() {
+        classDetailList.clear();
         SQLUtils sqlUtils = new SQLUtils(this, "class.db", null, propertiesUtils.readInt("DATABASE_VERSION", 1));
         SQLiteDatabase db = sqlUtils.getReadableDatabase();
-        if (db == null) {
+        if (sqlUtils.db == null) {
             Toast.makeText(this, "当前暂无课程表，请点击右上角刷新后重试", Toast.LENGTH_SHORT).show();
             return;
         }
-        Cursor classinfo = db.rawQuery("SELECT * FROM CLASSINFO", null);
+        Cursor classinfo = sqlUtils.queryInfo("SELECT * FROM CLASSINFO", null);
         int count = classinfo.getCount();
         if (count == 0) {
             Toast.makeText(this, "当前暂无课程表，请点击右上角刷新后重试", Toast.LENGTH_SHORT).show();
@@ -286,8 +318,18 @@ public class MainActivity extends AppCompatActivity {
         putClassesIn(classDetailList, dateInfo[0]);
     }
 
+    /**
+     * 渲染课表
+     * 思路：
+     * 先查询数据库获得所有课表信息，然后再获取上课时间，根据上课时间获取到对应的课表格子之后，如果是连续上课，weekRan的长度小于等于2，再判断当前周是否在上课范围内
+     * 如果不在，不进行渲染，如果在，则添加信息，如果是间隔上课，
+     *
+     * @param list
+     * @param mNowWeek
+     */
     private void putClassesIn(List<ClassDetail> list, int mNowWeek) {
         initKb();
+        clearKb();
         Random random = new Random();
         int whichDay;
         int whichjie;
@@ -296,6 +338,7 @@ public class MainActivity extends AppCompatActivity {
         ClassDetail classDetail;
         for (int i = 0; i < list.size(); i++) {
             classDetail = list.get(i);
+//            Log.e("TAG", "putClassesIn: " + classDetail.toString());
             whichDay = classDetail.getWhichDay();
             whichjie = classDetail.getWhichjie();
             virtualChildAt = (ShapeTextView) tableRows[whichjie].getVirtualChildAt(whichDay);
@@ -303,56 +346,57 @@ public class MainActivity extends AppCompatActivity {
             virtualChildAt.setMaxWidth(screenWidth / 8);
             String[] weekRan = classDetail.getWeekRan();
             // 连续上课情况
-            if (weekRan.length <= 2) {
-                // 替换掉所有的中括号以及空格，防止解析错误
-                if (mNowWeek < Integer.parseInt(weekRan[0].replaceAll("(\\[|\\]|\\s*)", "")) || mNowWeek > Integer.parseInt(weekRan[1].replaceAll("(\\[|\\]|\\s*)", ""))) {
-                    virtualChildAt.setBackgroundResource(R.drawable.textviewborder);
-                    virtualChildAt.setText("");
-                } else {
+//            Log.e("", "putClassesIn: " + weekRan.length);
+            int n = Integer.parseInt(weekRan[0].replaceAll("(\\[|\\]|\\s*)", ""));
+            int b = Integer.parseInt(weekRan[weekRan.length - 1].replaceAll("(\\[|\\]|\\s*)", ""));
+//            Log.e("TAG", "putClassesIn: " + n + "    " + b + "  now" + mNowWeek);
+            if (n <= mNowWeek && b >= mNowWeek) {
+                if (weekRan.length <= 2) {
+                    // 替换掉所有的中括号以及空格，防止解析错误
                     virtualChildAt.setBackgroundResource(color[random.nextInt(9)]);
                     sb.append(classDetail.getName());
                     sb.append("\n");
                     sb.append(classDetail.getRoom());
                     virtualChildAt.setText(sb.toString());
                     sb.delete(0, sb.length());
-                }
-            } else {
-                // 隔周上课的情况
-                for (int j = 0; j < weekRan.length; j++) {
-                    int m = Integer.parseInt(weekRan[j].replaceAll("(\\[|\\]|\\s*)", ""));
-                    if (mNowWeek == m) {
-                        virtualChildAt.setBackgroundResource(color[random.nextInt(9)]);
-                        sb.append(classDetail.getName());
-                        sb.append("\n");
-                        sb.append(classDetail.getRoom());
-                        virtualChildAt.setText(sb.toString());
-                        sb.delete(0, sb.length());
-                        break;
-                    } else {
-                        virtualChildAt.setBackgroundResource(R.drawable.textviewborder);
-                        virtualChildAt.setText("");
+                } else {
+                    // 隔周上课的情况
+                    for (int j = 0; j < weekRan.length; j++) {
+                        int m = Integer.parseInt(weekRan[j].replaceAll("(\\[|\\]|\\s*)", ""));
+                        if (mNowWeek == m) {
+                            virtualChildAt.setBackgroundResource(color[random.nextInt(9)]);
+                            sb.append(classDetail.getName());
+                            sb.append("\n");
+                            sb.append(classDetail.getRoom());
+                            virtualChildAt.setText(sb.toString());
+                            sb.delete(0, sb.length());
+                            break;
+                        }
                     }
                 }
+                ShapeTextView finalVirtualChildAt = virtualChildAt;
+                virtualChildAt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                        builder.setTitle("详情");
+                        CharSequence text = finalVirtualChildAt.getText();
+                        builder.setMessage(text);
+                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        });
+                        AlertDialog alertDialog = builder.create();
+                        alertDialog.show();
+                    }
+                });
             }
-            ShapeTextView finalVirtualChildAt = virtualChildAt;
-            virtualChildAt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                    builder.setTitle("详情");
-                    CharSequence text = finalVirtualChildAt.getText();
-                    builder.setMessage(text);
-                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                        }
-                    });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
-                }
-            });
         }
+
+
     }
+
 
     //设置课表格式,并添加侦听事件
     private void initKb() {
@@ -385,6 +429,16 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+            }
+        }
+    }
+
+    private void clearKb() {
+        for (int i = 1; i <= 5; i++) {
+            for (int j = 1; j < 8; j++) {
+                ShapeTextView grid = (ShapeTextView) tableRows[i].getVirtualChildAt(j);
+                grid.setText("");
+                grid.setBackgroundResource(R.drawable.textviewborder);
             }
         }
     }

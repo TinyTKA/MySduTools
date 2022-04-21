@@ -1,14 +1,13 @@
 package xyz.taouvw.mysdutools.utils;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import java.security.PublicKey;
 import java.util.List;
 
 import xyz.taouvw.mysdutools.Bean.ClassDetail;
@@ -16,7 +15,7 @@ import xyz.taouvw.mysdutools.Bean.ClassDetail;
 public class SQLUtils extends SQLiteOpenHelper {
 
 
-    private SQLiteDatabase db;
+    public SQLiteDatabase db;
 
     public SQLUtils(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -69,11 +68,16 @@ public class SQLUtils extends SQLiteOpenHelper {
         return true;
     }
 
+    public Cursor queryInfo(String sql, String[] selectArgs) {
+        Cursor cursor = db.rawQuery(sql, selectArgs);
+        return cursor;
+    }
+
     public void addMyOwnClass(ClassDetail classDetail) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("INSERT INTO CLASSINFO VALUES(null,");
         stringBuilder.append(classDetail.generateSQL());
-        stringBuilder.append(",");
+        stringBuilder.append(";");
         db.execSQL(stringBuilder.toString());
     }
 }

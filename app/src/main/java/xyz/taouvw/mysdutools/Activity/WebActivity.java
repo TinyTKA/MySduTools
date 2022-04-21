@@ -1,54 +1,30 @@
 package xyz.taouvw.mysdutools.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
-import android.os.Build;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Editable;
-import android.util.Log;
-import android.util.StringBuilderPrinter;
 import android.view.View;
 import android.webkit.ValueCallback;
 import android.webkit.WebResourceRequest;
-import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-
-import javax.security.auth.login.LoginException;
 
 import xyz.taouvw.mysdutools.Bean.ClassDetail;
 import xyz.taouvw.mysdutools.R;
-import xyz.taouvw.mysdutools.utils.InJavaScriptLocalObj;
 import xyz.taouvw.mysdutools.utils.ParseHtml;
 import xyz.taouvw.mysdutools.utils.PropertiesUtils;
 import xyz.taouvw.mysdutools.utils.SQLUtils;
@@ -82,13 +58,12 @@ public class WebActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "解析失败，请重试", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
-//                                for (ClassDetail c : parse) {
-////                                    Log.e("Class", "onReceiveValue: " + c.toString());
-//                                    Log.e("Class", "onReceiveValue: " + c.generateSQL());
-//                                }
+
                                 // 将课程表保存到数据库中
                                 boolean b = sqlUtils.addClassesInfo(parse, getApplicationContext());
                                 if (b) {
+                                    Intent intent = new Intent(WebActivity.this, MainActivity.class);
+                                    setResult(2, intent);
                                     finish();
                                 }
                             } else {
