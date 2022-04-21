@@ -43,10 +43,10 @@ public class AddClassActivity extends AppCompatActivity {
     NumberPicker numberPicker3;
     LinearLayout pickWeek;
     LinearLayout pickTime;
-    String weekRange = "";
-    String className = "";
-    String classroom = "";
-    String classTea = "";
+    String weekRange = "1,";
+    String className = "空";
+    String classroom = "空";
+    String classTea = "空";
     String jie = "1";
     String zhou = "1";
 
