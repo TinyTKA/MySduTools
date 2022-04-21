@@ -2,10 +2,8 @@ package xyz.taouvw.mysdutools.Activity;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -22,6 +20,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -30,11 +32,9 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Properties;
 import java.util.Random;
 
 import xyz.taouvw.mysdutools.Adapter.OptionsAdapter;
@@ -50,7 +50,7 @@ import xyz.taouvw.mysdutools.utils.SharedPreferenceUtils;
 public class MainActivity extends AppCompatActivity {
     Toolbar tb;
     DrawerLayout mdrawlayout;
-    private final int[] color = new int[]{R.color.lightyellow,
+    private static final int[] color = new int[]{R.color.lightyellow,
             R.color.peachpuff,
             R.color.khaki,
             R.color.paleturquoise,
@@ -85,13 +85,26 @@ public class MainActivity extends AppCompatActivity {
     String startOfStudy = "2022年02月20日";
     SharedPreferenceUtils preferenceUtils;
 
+
+    PropertiesUtils propertiesUtils = PropertiesUtils.getInstance(MainActivity.this, "values.properties");
+    ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            Intent data = result.getData();
+            int resultCode = result.getResultCode();
+        }
+    });
+
+    private static final String[] weekDays = {"周一\n", "周二\n", "周三\n", "周四\n", "周五\n", "周六\n", "周日\n"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         //初始化
         init();
-
     }
 
     void init() {
@@ -113,11 +126,13 @@ public class MainActivity extends AppCompatActivity {
         //读取开学日期信息
         preferenceUtils = new SharedPreferenceUtils(MainActivity.this, "values");
         //读取学期开始
+        propertiesUtils.init();
         startOfStudy = preferenceUtils.read("startOfStudyYear", "2022") + "年" + preferenceUtils.read("startOfStudyMonth", "02") + "月" + preferenceUtils.read("startOfStudyDay", "20") + "日";
         preferenceUtils.commit();
         //获取学期信息
         dateInfo = DateUtils.getDayAndWeek(startOfStudy);
         // 给toolbar添加menu以及监听
+
         tb.inflateMenu(R.menu.toolbarmenu);
         tb.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -209,8 +224,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //周选择器渲染
-        InitKbList(dateInfo[0]);
 
         //选项选择器渲染
         OptionsAdapter optionsAdapter = new OptionsAdapter(this);
@@ -228,6 +241,8 @@ public class MainActivity extends AppCompatActivity {
         tableRows[4] = this.findViewById(R.id.FourthClass);
         tableRows[5] = this.findViewById(R.id.FifthClass);
         initKb();
+        InitKbList(dateInfo[0]);
+        getDayOfWeek(dateInfo[0]);
     }
 
 
@@ -239,14 +254,13 @@ public class MainActivity extends AppCompatActivity {
         if (classDetailList.size() != 0) {
             return;
         }
-        SQLUtils sqlUtils = new SQLUtils(this, "class.db", null, 1);
+        SQLUtils sqlUtils = new SQLUtils(this, "class.db", null, propertiesUtils.readInt("DATABASE_VERSION", 1));
         SQLiteDatabase db = sqlUtils.getReadableDatabase();
         if (db == null) {
             Toast.makeText(this, "当前暂无课程表，请点击右上角刷新后重试", Toast.LENGTH_SHORT).show();
             return;
         }
         Cursor classinfo = db.rawQuery("SELECT * FROM CLASSINFO", null);
-
         int count = classinfo.getCount();
         if (count == 0) {
             Toast.makeText(this, "当前暂无课程表，请点击右上角刷新后重试", Toast.LENGTH_SHORT).show();
@@ -274,13 +288,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void putClassesIn(List<ClassDetail> list, int mNowWeek) {
         initKb();
-//        Log.e("当前周", "putClassesIn: " + mNowWeek);
         Random random = new Random();
         int whichDay;
         int whichjie;
         ShapeTextView virtualChildAt;
         StringBuilder sb = new StringBuilder();
-        ClassDetail classDetail = new ClassDetail();
+        ClassDetail classDetail;
         for (int i = 0; i < list.size(); i++) {
             classDetail = list.get(i);
             whichDay = classDetail.getWhichDay();
@@ -288,7 +301,6 @@ public class MainActivity extends AppCompatActivity {
             virtualChildAt = (ShapeTextView) tableRows[whichjie].getVirtualChildAt(whichDay);
             virtualChildAt.setMaxHeight(screenHeight / 5);
             virtualChildAt.setMaxWidth(screenWidth / 8);
-
             String[] weekRan = classDetail.getWeekRan();
             // 连续上课情况
             if (weekRan.length <= 2) {
@@ -333,7 +345,6 @@ public class MainActivity extends AppCompatActivity {
                     builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-
                         }
                     });
                     AlertDialog alertDialog = builder.create();
@@ -343,7 +354,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //设置课表格式
+    //设置课表格式,并添加侦听事件
     private void initKb() {
         for (int i = 0; i < 8; i++) {
             ShapeTextView weekend = (ShapeTextView) tableRows[0].getVirtualChildAt(i);
@@ -353,6 +364,28 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 1; i <= 5; i++) {
             ShapeTextView weekend = (ShapeTextView) tableRows[i].getVirtualChildAt(0);
             weekend.setHeight(screenHeight / 8);
+        }
+
+        for (int i = 1; i <= 5; i++) {
+            for (int j = 0; j < 7; j++) {
+                ShapeTextView grid = (ShapeTextView) tableRows[i].getVirtualChildAt(j);
+                int finalJ = j;
+                int finalI = i;
+                grid.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        Intent intent = new Intent(MainActivity.this, AddClassActivity.class);
+                        intent.putExtra("whichday", finalJ);
+                        intent.putExtra("whichjie", finalI);
+                        if (grid.getText() != "") {
+                            Toast.makeText(MainActivity.this, "当前选中的已经有课了，换一个吧", Toast.LENGTH_SHORT).show();
+                        } else {
+                            launcher.launch(intent);
+                        }
+                        return true;
+                    }
+                });
+            }
         }
     }
 
@@ -365,8 +398,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(View view, int position) {
                 NowChosenPosition = position;
                 tb.setSubtitle("第" + position + "周");
-
                 putClassesIn(classDetailList, position);
+                getDayOfWeek(position);
                 if (LastshapeTextView != null) {
                     if (LastChosenPosition == nowWeek) {
                         LastshapeTextView.setBackgroundResource(R.color.lightgray);
@@ -387,5 +420,20 @@ public class MainActivity extends AppCompatActivity {
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         weekRecycle.setLayoutManager(layoutManager);
         weekRecycle.setAdapter(weekAdapter);
+    }
+
+    /**
+     * 获取每周对应的日期并渲染
+     *
+     * @param nowWeek
+     */
+    private void getDayOfWeek(int nowWeek) {
+        int[] dayOfSpecialWeek = DateUtils.getDayOfSpecialWeek(startOfStudy, nowWeek);
+        for (int i = 6; i >= 0; i--) {
+            ShapeTextView weekend = (ShapeTextView) tableRows[0].getVirtualChildAt(7 - i);
+            weekend.setText(weekDays[6 - i] + dayOfSpecialWeek[i] + "日");
+        }
+        ShapeTextView weekend = (ShapeTextView) tableRows[0].getVirtualChildAt(0);
+        weekend.setText(dayOfSpecialWeek[7] + "月");
     }
 }

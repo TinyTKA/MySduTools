@@ -91,6 +91,7 @@ public class ParseHtml {
             if (s1.length >= 2) {
                 int i = s1[0].lastIndexOf("(");
                 classDetail.setName(s1[0].substring(0, i));
+                classDetail.setClassCode(s1[0].substring(i + 1));
             }
         }
         return classDetail;

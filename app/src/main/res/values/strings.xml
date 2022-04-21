@@ -256,4 +256,8 @@
 
 "</string>
     <string name="startDate">开学时间</string>
+    <string name="addclassSubTitle">上课时间仅支持添加单节，请输入数字</string>
+    <string name="AddClassName">添加课程名</string>
+    <string name="Classroom">上课地点</string>
+    <string name="classTeacher">任课老师</string>
 </resources>

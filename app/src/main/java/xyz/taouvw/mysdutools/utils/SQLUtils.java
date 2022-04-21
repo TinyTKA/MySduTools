@@ -15,6 +15,7 @@ import xyz.taouvw.mysdutools.Bean.ClassDetail;
 
 public class SQLUtils extends SQLiteOpenHelper {
 
+
     private SQLiteDatabase db;
 
     public SQLUtils(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
@@ -45,7 +46,7 @@ public class SQLUtils extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+        sqLiteDatabase.execSQL("ALTER TABLE CLASSINFO ADD classcode VARCHAR(30)");
     }
 
     public boolean addClassesInfo(List<ClassDetail> classDetails, Context context) {
@@ -66,5 +67,13 @@ public class SQLUtils extends SQLiteOpenHelper {
             stringBuffer.delete(0, stringBuffer.length() - 1);
         }
         return true;
+    }
+
+    public void addMyOwnClass(ClassDetail classDetail) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("INSERT INTO CLASSINFO VALUES(null,");
+        stringBuilder.append(classDetail.generateSQL());
+        stringBuilder.append(",");
+        db.execSQL(stringBuilder.toString());
     }
 }

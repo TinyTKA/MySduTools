@@ -9,8 +9,11 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.widget.Toolbar;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -40,6 +43,8 @@ public class MapActivity extends CheckPermissionsActivity {
     PointF[] positionXYs;
     PointF[] positionLALTs;
     PointF pointF = new PointF();
+
+    Toolbar tb;
 
 
     int screenWidth;
@@ -72,6 +77,15 @@ public class MapActivity extends CheckPermissionsActivity {
         dm = resources.getDisplayMetrics();
         screenHeight = dm.heightPixels;
         screenWidth = dm.widthPixels;
+
+        tb = this.findViewById(R.id.tbOfMap);
+        tb.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         map = this.findViewById(R.id.map2);
         ImageSource resource = ImageSource.resource(R.mipmap.map2);
         map.setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_CUSTOM);

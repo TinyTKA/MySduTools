@@ -7,17 +7,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ClassDetail {
-    String name;
-    String teacher;
-    String week;
-    String room;
+    String name = "";
+    String teacher = "";
+    String week = "";
+    String room = "";
     int whichDay;
     int whichjie;
     String[] WeekRan;
     String[] range;
+    String ClassCode = "";
 
-    private final String dot1 = "'";
-    private final String dot2 = "',";
+    private static final String dot1 = "'";
+    private static final String dot2 = "',";
+
+    List<String> weekRange = new ArrayList<String>();
+    private String pattern;
 
     public int getWhichDay() {
         return whichDay;
@@ -34,9 +38,6 @@ public class ClassDetail {
     public void setWhichjie(int whichjie) {
         this.whichjie = whichjie;
     }
-
-    List<String> weekRange = new ArrayList<String>();
-    private String pattern;
 
     public ClassDetail() {
         pattern = "(\\d+)";
@@ -56,6 +57,14 @@ public class ClassDetail {
 
     public void setRange(String[] range) {
         this.range = range;
+    }
+
+    public String getClassCode() {
+        return ClassCode;
+    }
+
+    public void setClassCode(String classCode) {
+        ClassCode = classCode;
     }
 
     @Override
@@ -78,7 +87,8 @@ public class ClassDetail {
                 dot1 + whichDay + dot2 +
                 dot1 + whichjie + dot2 +
                 dot1 + Arrays.toString(WeekRan) + dot2 +
-                dot1 + Arrays.toString(range) + "')";
+                dot1 + Arrays.toString(range) + dot2 +
+                dot1 + ClassCode + "')";
     }
 
     public ClassDetail(String name, String teacher, String week, String room) {

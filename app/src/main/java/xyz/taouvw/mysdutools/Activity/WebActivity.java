@@ -50,19 +50,15 @@ import xyz.taouvw.mysdutools.Bean.ClassDetail;
 import xyz.taouvw.mysdutools.R;
 import xyz.taouvw.mysdutools.utils.InJavaScriptLocalObj;
 import xyz.taouvw.mysdutools.utils.ParseHtml;
+import xyz.taouvw.mysdutools.utils.PropertiesUtils;
 import xyz.taouvw.mysdutools.utils.SQLUtils;
 
 public class WebActivity extends AppCompatActivity {
-    //    public static final String LOGIN_URL = "https://pass.sdu.edu.cn/cas/login?service=http%3A%2F%2Fbkzhjx.wh.sdu.edu.cn%2Fsso.jsp";
-//    public static final String USER_AGENT = "User-Agent";
-//    public static final String USER_AGENT_VALUE = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36 Edg/100.0.1185.36";
-//    Map<String, String> params = new LinkedHashMap<>();
-//    Map<String, String> cookies;
-//    Map<String, String> requestHeaders = new LinkedHashMap<>();
     FloatingActionButton submit;
     WebView webView;
     EditText passwd_editText;
     EditText user_editText;
+    private PropertiesUtils propertiesUtils = PropertiesUtils.getInstance(WebActivity.this, "values.properties");
     private SQLUtils sqlUtils;
     Handler handler = new Handler(new Handler.Callback() {
         @Override
@@ -116,10 +112,10 @@ public class WebActivity extends AppCompatActivity {
 
     public void init() {
         //初始化参数
-
+        propertiesUtils.init();
         submit = this.findViewById(R.id.submit_web);
         webView = this.findViewById(R.id.myweb);
-        sqlUtils = new SQLUtils(WebActivity.this, "class.db", null, 1);
+        sqlUtils = new SQLUtils(WebActivity.this, "class.db", null, propertiesUtils.readInt("DATABASE_VERSION", 1));
 //        passwd_editText = this.findViewById(R.id.UserPasswd);
 //        user_editText = this.findViewById(R.id.UserCode);
 

@@ -25,7 +25,7 @@
             android:layout_margin="16dp"
             android:contentDescription="提交"
             android:src="@drawable/ic_baseline_check_24"
-            app:backgroundTint="@color/antiquewhite" />
+            app:backgroundTint="#739AE1" />
     </FrameLayout>
 
 
