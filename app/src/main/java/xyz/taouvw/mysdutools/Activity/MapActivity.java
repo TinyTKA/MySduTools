@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 
 import com.amap.api.location.AMapLocation;
@@ -27,6 +28,7 @@ import java.util.Properties;
 
 import xyz.taouvw.mysdutools.MyView.PinView;
 import xyz.taouvw.mysdutools.R;
+import xyz.taouvw.mysdutools.utils.StringUtils;
 
 public class MapActivity extends CheckPermissionsActivity {
     PinView map;
@@ -45,6 +47,7 @@ public class MapActivity extends CheckPermissionsActivity {
     PointF pointF = new PointF();
 
     Toolbar tb;
+    SearchView searchMap;
 
 
     int screenWidth;
@@ -100,7 +103,28 @@ public class MapActivity extends CheckPermissionsActivity {
         }
         positionXY.set(Float.parseFloat(properties.getProperty("leftUpX")), Float.parseFloat(properties.getProperty("leftUpY")));
         map.setToxy(positionXY);
+        //搜素栏
+        searchMap = this.findViewById(R.id.searchMap);
+        searchMap.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                PointF pointF = searchByString(query);
+                if (pointF.y == 0) {
+                    Toast.makeText(MapActivity.this, "抱歉没有查找到，请换一个关键词再试试", Toast.LENGTH_SHORT).show();
+                    return false;
+                } else {
+                    SubsamplingScaleImageView.AnimationBuilder animationBuilder = map.animateScaleAndCenter(0.8f, pointF);
+                    animationBuilder.start();
+                }
 
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
         //初始化传感器
         sm = (SensorManager) getSystemService(SENSOR_SERVICE);
         mSensorOrientation = sm.getDefaultSensor(Sensor.TYPE_ORIENTATION);
@@ -288,6 +312,7 @@ public class MapActivity extends CheckPermissionsActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        map.recycle();
         stopLocation();
         destroyLocation();
     }
@@ -337,6 +362,20 @@ public class MapActivity extends CheckPermissionsActivity {
         pointF.x += 55;
         pointF.y += 145;
 
+        return pointF;
+    }
+
+    private PointF searchByString(String queryString) {
+        PointF pointF = new PointF();
+        String s = StringUtils.removeEmptyAndToUp(queryString);
+        String match = StringUtils.findMatch(s);
+        if (match.equals("null")) {
+            pointF.x = 0;
+            pointF.y = 0;
+        } else {
+            pointF.x = Integer.parseInt(properties.getProperty(match + "X"));
+            pointF.y = Integer.parseInt(properties.getProperty(match + "Y"));
+        }
         return pointF;
     }
 

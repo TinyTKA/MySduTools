@@ -331,14 +331,20 @@ public class MainActivity extends AppCompatActivity {
         initKb();
         clearKb();
         Random random = new Random();
+        // 获取哪天上课和第几节
         int whichDay;
         int whichjie;
         ShapeTextView virtualChildAt;
         StringBuilder sb = new StringBuilder();
         ClassDetail classDetail;
+        /**
+         * 进入循环，开始遍历所有课程
+         */
         for (int i = 0; i < list.size(); i++) {
             classDetail = list.get(i);
 //            Log.e("TAG", "putClassesIn: " + classDetail.toString());
+            // 通过Day和jie这两个变量来选择需要渲染的格子
+
             whichDay = classDetail.getWhichDay();
             whichjie = classDetail.getWhichjie();
             virtualChildAt = (ShapeTextView) tableRows[whichjie].getVirtualChildAt(whichDay);
@@ -443,7 +449,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     // 初始化周选择器，选择开学日期后将重新调用
     private void InitKbList(int nowWeek) {
         WeekAdapter weekAdapter = new WeekAdapter(nowWeek);
@@ -475,7 +480,6 @@ public class MainActivity extends AppCompatActivity {
         weekRecycle.setLayoutManager(layoutManager);
         weekRecycle.setAdapter(weekAdapter);
     }
-
     /**
      * 获取每周对应的日期并渲染
      *
