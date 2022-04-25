@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,11 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import xyz.taouvw.mysdutools.Activity.AboutActivity;
 import xyz.taouvw.mysdutools.Activity.MainActivity;
 import xyz.taouvw.mysdutools.Activity.MapActivity;
+import xyz.taouvw.mysdutools.Activity.SearchFreeRoomActivity;
 import xyz.taouvw.mysdutools.R;
 
 public class OptionsAdapter extends RecyclerView.Adapter<OptionsAdapter.MyViewHolder> {
-    public String[] Options = {"课程表", "校区地图", "关于我们"};
-    public int[] imglist = {R.drawable.ic_baseline_grid_on_24, R.drawable.ic_baseline_map_24, R.drawable.ic_baseline_chat_bubble_outline_24};
+    public String[] Options = {"课程表", "校区地图", "查询空教室", "关于我们"};
+    public int[] imglist = {R.drawable.ic_baseline_grid_on_24, R.drawable.ic_baseline_map_24, R.drawable.ic_baseline_search_24, R.drawable.ic_baseline_chat_bubble_outline_24};
     Context context;
 
 
@@ -63,8 +63,9 @@ public class OptionsAdapter extends RecyclerView.Adapter<OptionsAdapter.MyViewHo
                         context.startActivity(intent);
                     }
                     break;
-                    case "今日计划": {
-                        Toast.makeText(view.getContext(), "开发中", Toast.LENGTH_SHORT).show();
+                    case "查询空教室": {
+                        Intent intent = new Intent(view.getContext(), SearchFreeRoomActivity.class);
+                        context.startActivity(intent);
                     }
                     break;
                     case "关于我们": {

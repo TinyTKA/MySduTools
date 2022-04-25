@@ -1,6 +1,6 @@
 ### MySduTools
 
-​	本app继承自MySdu，由于MySdu没有提供开源，故博主决定自己从头重新开发一个新的MySduTools，目前app提供的功能有课程表，以及校园地图定位。
+​ 本app继承自MySdu，由于MySdu没有提供开源，故博主决定自己从头重新开发一个新的MySduTools，目前app提供的功能有课程表，以及校园地图定位。
 
 #### 使用教程
 

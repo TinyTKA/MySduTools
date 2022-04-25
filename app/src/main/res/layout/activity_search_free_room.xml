@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.SearchFreeRoomActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbOfSearchRoom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#739AE1"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+        app:title="空教室查询">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/research_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/ic_baseline_search_24" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TableRow android:layout_height="match_parent">
+
+            <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/kbMarginLeft"
+                android:layout_marginRight="@dimen/kbMarginRight"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:text="教室"
+                android:textSize="@dimen/kb_text_size"
+                app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                app:bottomRightRadius="@dimen/BottomRightRadius"
+                app:solidColor="@color/snow"
+                app:topLeftRadius="@dimen/TopLeftRadius"
+                app:topRightRadius="@dimen/TopRightRadius" />
+
+            <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/kbMarginLeft"
+                android:layout_marginRight="@dimen/kbMarginRight"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="第一节"
+                android:textSize="@dimen/kb_text_size"
+                app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                app:bottomRightRadius="@dimen/BottomRightRadius"
+                app:solidColor="@color/snow"
+                app:topLeftRadius="@dimen/TopLeftRadius"
+                app:topRightRadius="@dimen/TopRightRadius" />
+
+            <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/kbMarginLeft"
+                android:layout_marginRight="@dimen/kbMarginRight"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="第二节"
+                android:textSize="@dimen/kb_text_size"
+                app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                app:bottomRightRadius="@dimen/BottomRightRadius"
+                app:solidColor="@color/snow"
+                app:topLeftRadius="@dimen/TopLeftRadius"
+                app:topRightRadius="@dimen/TopRightRadius" />
+
+            <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/kbMarginLeft"
+                android:layout_marginRight="@dimen/kbMarginRight"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="第三节"
+                android:textSize="@dimen/kb_text_size"
+                app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                app:bottomRightRadius="@dimen/BottomRightRadius"
+                app:solidColor="@color/snow"
+                app:topLeftRadius="@dimen/TopLeftRadius"
+                app:topRightRadius="@dimen/TopRightRadius" />
+
+            <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/kbMarginLeft"
+                android:layout_marginRight="@dimen/kbMarginRight"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="第四节"
+                android:textSize="@dimen/kb_text_size"
+                app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                app:bottomRightRadius="@dimen/BottomRightRadius"
+                app:solidColor="@color/snow"
+                app:topLeftRadius="@dimen/TopLeftRadius"
+                app:topRightRadius="@dimen/TopRightRadius" />
+
+            <xyz.taouvw.mysdutools.MyView.ShapeTextView
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/kbMarginLeft"
+                android:layout_marginRight="@dimen/kbMarginRight"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="第五节"
+                android:textSize="@dimen/kb_text_size"
+                app:bottomLeftRadius="@dimen/BottomLeftRadius"
+                app:bottomRightRadius="@dimen/BottomRightRadius"
+                app:solidColor="@color/snow"
+                app:topLeftRadius="@dimen/TopLeftRadius"
+                app:topRightRadius="@dimen/TopRightRadius" />
+
+        </TableRow>
+    </TableLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/roomList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

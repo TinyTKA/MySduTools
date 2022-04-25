@@ -1,7 +1,6 @@
 package xyz.taouvw.mysdutools.Adapter;
 
 import android.annotation.SuppressLint;
-import android.icu.number.NumberRangeFormatter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,6 +87,4 @@ public class WeekAdapter extends RecyclerView.Adapter<WeekAdapter.MyViewHolder> 
     public void setItemClickListener(MyItemClickListener ItemClickListener) {
         this.myItemClickListener = ItemClickListener;
     }
-
-
 }
