@@ -113,7 +113,6 @@ public class SearchFreeRoomActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-                overridePendingTransition(R.anim.wave_scale, R.anim.fade);
             }
         });
         search_btn = this.findViewById(R.id.research_btn);

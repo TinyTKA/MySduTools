@@ -57,7 +57,7 @@ public class MoreOptionAdapter extends RecyclerView.Adapter<MoreOptionAdapter.Op
                     }
                     break;
                     case "功能反馈": {
-                        Uri uri = Uri.parse("https://www.taouvw.xyz/archives/645");
+                        Uri uri = Uri.parse("https://github.com/xt-9931/VMySduTools");
                         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                         context.startActivity(intent);
                     }
