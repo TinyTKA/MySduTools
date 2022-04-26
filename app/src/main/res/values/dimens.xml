@@ -31,4 +31,6 @@
     <dimen name="margin_right">15dp</dimen>
     <dimen name="margin_middle">2dp</dimen>
     <dimen name="kb_text_size">10sp</dimen>
+    <dimen name="room_text_size">12sp</dimen>
+
 </resources>

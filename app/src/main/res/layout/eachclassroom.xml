@@ -7,7 +7,8 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="40dp"
+        android:layout_margin="5dp">
 
         <TableRow
             android:id="@+id/dayList"
@@ -17,10 +18,13 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/kbMarginLeft"
                 android:layout_marginRight="@dimen/kbMarginRight"
-                android:layout_weight="4"
-                android:gravity="center"
+                android:layout_weight="5"
+                android:gravity="center_vertical"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:paddingLeft="2dp"
                 android:text="教室"
-                android:textSize="@dimen/kb_text_size"
+                android:textSize="@dimen/room_text_size"
                 app:bottomLeftRadius="@dimen/BottomLeftRadius"
                 app:bottomRightRadius="@dimen/BottomRightRadius"
                 app:solidColor="@color/snow"

@@ -9,20 +9,23 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="选择学期" />
-
         <NumberPicker
             android:id="@+id/choseTerm"
             android:layout_width="wrap_content"
-            android:layout_height="80dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="20dp" />
     </LinearLayout>
 
+    <View
+
+        android:id="@+id/divider"
+        android:layout_width="240dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center_horizontal"
+        android:background="?android:attr/listDivider" />
+
     <LinearLayout
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal">
@@ -32,33 +35,35 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
 
-            android:text="选择校区" />
+            android:text="校区" />
 
         <NumberPicker
             android:id="@+id/choseXq"
             android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:layout_marginLeft="20dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="选择教学楼" />
+            android:layout_marginLeft="20dp"
+            android:text="位置" />
 
         <NumberPicker
             android:id="@+id/choseJxl"
             android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:layout_marginLeft="20dp" />
-
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp" />
     </LinearLayout>
+
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="240dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center_horizontal"
+        android:background="?android:attr/listDivider" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -69,32 +74,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="选择周次" />
+            android:text="周次" />
 
         <NumberPicker
             android:id="@+id/choseWhichWeek"
             android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:layout_marginLeft="20dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="选择星期" />
+            android:layout_marginLeft="20dp"
+            android:text="星期" />
 
         <NumberPicker
             android:id="@+id/choseWhichDay"
             android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:layout_marginLeft="20dp" />
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp" />
 
     </LinearLayout>
 
