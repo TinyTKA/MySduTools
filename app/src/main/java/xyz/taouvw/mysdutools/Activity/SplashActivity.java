@@ -38,9 +38,7 @@ public class SplashActivity extends AppCompatActivity {
                     sleep(1500);
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
-                    overridePendingTransition(R.anim.wave_scale, R.anim.wave_scale);
                     finish();
-                    overridePendingTransition(R.anim.wave_scale, R.anim.wave_scale);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

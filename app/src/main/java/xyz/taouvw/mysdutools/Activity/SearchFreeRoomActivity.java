@@ -33,12 +33,14 @@ import xyz.taouvw.mysdutools.Adapter.ClassRoomAdapter;
 import xyz.taouvw.mysdutools.Bean.ClassRoomDetail;
 import xyz.taouvw.mysdutools.R;
 import xyz.taouvw.mysdutools.utils.ClassroomUtils;
+import xyz.taouvw.mysdutools.utils.DateUtils;
+import xyz.taouvw.mysdutools.utils.SharedPreferenceUtils;
 
 public class SearchFreeRoomActivity extends AppCompatActivity {
     private static final String[] TermList = new String[]{"2021-2022-2"};
     private static final String[] xqList = new String[]{"青岛校区"};
     private static final String[] xqListCode = new String[]{"07"};
-    private static final String[] jxlList = new String[]{"振声苑N","振声苑W","振声苑E", "会文南楼", "会文北楼"};
+    private static final String[] jxlList = new String[]{"振声苑N", "振声苑W", "振声苑E", "会文南楼", "会文北楼"};
     private static final String[] dayList = new String[]{"一", "二", "三", "四", "五", "六", "日"};
     private static final String url = "https://bkzhjx.wh.sdu.edu.cn/jiaowu/kxjsgl/kxjsgl.do?method=queryKxxxByJs_sddxFP&typewhere=jwyx";
 
@@ -72,6 +74,11 @@ public class SearchFreeRoomActivity extends AppCompatActivity {
     String term;
     String where;
     Handler handler;
+    SharedPreferenceUtils preferenceUtils;
+    String nowWeek;
+    String nowDay;
+    String startOfStudy;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +114,7 @@ public class SearchFreeRoomActivity extends AppCompatActivity {
     }
 
     void init() {
-
+        preferenceUtils = new SharedPreferenceUtils(SearchFreeRoomActivity.this, "values");
         tb = this.findViewById(R.id.tbOfSearchRoom);
         tb.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,17 +126,13 @@ public class SearchFreeRoomActivity extends AppCompatActivity {
         search_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startOfStudy = preferenceUtils.read("startOfStudyYear", "2022") + "年" + preferenceUtils.read("startOfStudyMonth", "02") + "月" + preferenceUtils.read("startOfStudyDay", "20") + "日";
+                int[] dayAndWeek = DateUtils.getDayAndWeek(startOfStudy);
+                choseWeek.setValue(dayAndWeek[0]);
+                choseWhichDay.setValue(dayAndWeek[1]);
                 alertDialog.show();
             }
         });
-
-//        for (int i = 0; i < 6; i++) {
-//            ClassRoomDetail classRoomDetail = new ClassRoomDetail();
-//            classRoomDetail.setName("青岛校区振声苑E111");
-//            classRoomDetail.setFreeTime(new int[]{1, 1, 0, 0, 1});
-//            classRoomDetail.setOccupiedTime(new int[]{1, 1, 0, 0, 1});
-//            classRoomDetailList.add(classRoomDetail);
-//        }
 
         roomList = haveClassroom.findViewById(R.id.roomList);
         classRoomAdapter = new ClassRoomAdapter(classRoomDetailList);

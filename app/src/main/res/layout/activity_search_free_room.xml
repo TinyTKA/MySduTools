@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/allbackgroundcolor"
     android:orientation="vertical"
     tools:context=".Activity.SearchFreeRoomActivity">
 
@@ -11,9 +12,12 @@
         android:id="@+id/tbOfSearchRoom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#739AE1"
+        android:background="@color/toolbarcolor"
         app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-        app:title="空教室查询">
+
+        app:title="空教室查询"
+
+        >
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/research_btn"

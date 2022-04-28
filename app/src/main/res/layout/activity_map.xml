@@ -11,17 +11,18 @@
         android:id="@+id/tbOfMap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#739AE1"
+        android:background="@color/toolbarcolor"
         app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-        app:title="校区地图">
+        app:title="校区地图"
+        app:titleTextColor="@color/optionTextColor">
 
         <androidx.appcompat.widget.SearchView
-            app:queryHint="查找地图"
             android:id="@+id/searchMap"
-            app:iconifiedByDefault="true"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="end" />
+            android:layout_gravity="end"
+            app:iconifiedByDefault="true"
+            app:queryHint="查找地图" />
 
     </androidx.appcompat.widget.Toolbar>
 

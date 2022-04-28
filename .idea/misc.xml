@@ -14,10 +14,10 @@
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/drawable/search_dialog_background.xml" value="0.1755" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/drawable/textviewborder.xml" value="0.264" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/activity_about.xml" value="0.264" />
-        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/activity_add_class.xml" value="0.264" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/activity_add_class.xml" value="0.248" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/activity_gd.xml" value="0.25885416666666666" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/activity_location.xml" value="0.10104166666666667" />
-        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/activity_main.xml" value="0.125" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/activity_map.xml" value="0.4" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/activity_search_free_room.xml" value="0.15081521739130435" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/activity_splash.xml" value="0.25885416666666666" />
@@ -34,7 +34,7 @@
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/kb2.xml" value="0.25885416666666666" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/more_optionlist.xml" value="0.25885416666666666" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/opensource.xml" value="0.25885416666666666" />
-        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/option_list.xml" value="0.25885416666666666" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/option_list.xml" value="0.2" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/optionlist.xml" value="0.25885416666666666" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/picktime.xml" value="0.25885416666666666" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/pickweek.xml" value="0.4" />

@@ -50,8 +50,8 @@ import xyz.taouvw.mysdutools.utils.SharedPreferenceUtils;
 public class MainActivity extends AppCompatActivity {
     Toolbar tb;
     DrawerLayout mdrawlayout;
-    private static final int[] color = new int[]{R.color.lightyellow,
-            R.color.peachpuff,
+    private static final int[] color = new int[]{R.color.choseweekbackgroundcolor,
+            R.color.mediumturquoise,
             R.color.khaki,
             R.color.paleturquoise,
             R.color.darkseagreen,
@@ -463,7 +463,7 @@ public class MainActivity extends AppCompatActivity {
                     if (LastChosenPosition == nowWeek) {
                         LastshapeTextView.setBackgroundResource(R.color.lightgray);
                     } else {
-                        LastshapeTextView.setBackgroundResource(R.color.white);
+                        LastshapeTextView.setBackgroundResource(R.color.kbColor);
                     }
                 }
                 nowShapeTextView = (ShapeTextView) view;
@@ -480,6 +480,7 @@ public class MainActivity extends AppCompatActivity {
         weekRecycle.setLayoutManager(layoutManager);
         weekRecycle.setAdapter(weekAdapter);
     }
+
     /**
      * 获取每周对应的日期并渲染
      *

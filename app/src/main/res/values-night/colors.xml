@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="toolbartextcolor">#ffffff</color>
+    <color name="toolbarcolor">#000000</color>
+    <color name="optionTextColor">#000000</color>
+    <color name="kbColor">#000000</color>
+    <color name="allbackgroundcolor">#000000</color>
+    <color name="WeeklistTextColor">#ffffff</color>
+    <color name="addclassdialog">#000000</color>
+    <color name="addclasshinttextcolor">#ffffff</color>
+    <color name="choseweekdialogbackgroundcolor">#352C2C</color>
+    <color name="kbgridtextcolor">#ffffff</color>
+    <color name="choseweekbackgroundcolor">#223022</color>
+    <color name="kbinfotextcolor">#000000</color>
+</resources>

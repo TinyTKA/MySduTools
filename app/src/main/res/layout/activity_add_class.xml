@@ -9,7 +9,7 @@
         android:id="@+id/tbOfAddClass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#739AE1"
+        android:background="@color/toolbarcolor"
         app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
         app:subtitle="@string/addclassSubTitle"
         app:title="添加新课程">
@@ -41,46 +41,52 @@
             android:id="@+id/newClass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            android:textColorHint="@color/addclasshinttextcolor">
 
             <EditText
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#7CC5BA"
+                android:background="@color/choseweekbackgroundcolor"
                 android:hint="@string/AddClassName"
                 android:maxLength="25"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:textColor="@color/addclasshinttextcolor" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            android:textColor="@color/addclasshinttextcolor">
 
             <EditText
                 android:id="@+id/newClassroom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#7CC5BA"
+                android:background="@color/choseweekbackgroundcolor"
                 android:hint="@string/Classroom"
                 android:maxLength="25"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:textColor="@color/addclasshinttextcolor" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            android:textColor="@color/addclasshinttextcolor">
 
             <EditText
                 android:id="@+id/newTeacherName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#7CC5BA"
+                android:background="@color/choseweekbackgroundcolor"
                 android:hint="@string/classTeacher"
                 android:maxLength="25"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:textColor="@color/addclasshinttextcolor" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
@@ -112,7 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:background="@color/white"
+                android:background="@color/choseweekdialogbackgroundcolor"
                 android:text="请选择周数"
                 android:textColor="@color/darkcyan" />
         </LinearLayout>
@@ -136,7 +142,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:background="@color/white"
+                android:background="@color/choseweekdialogbackgroundcolor"
                 android:text="周一 第1节"
                 android:textColor="@color/darkcyan" />
         </LinearLayout>
