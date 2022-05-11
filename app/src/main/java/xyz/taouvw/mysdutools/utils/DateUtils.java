@@ -18,6 +18,7 @@ public class DateUtils {
     dateinfo[1]:当前周几
      */
     public static int[] getDayAndWeek(String beginDate) {
+        // 利用当前时间与起始时间差来计算当前周
         int[] dateinfo = new int[]{0, 0};
 
         Date bd = null;

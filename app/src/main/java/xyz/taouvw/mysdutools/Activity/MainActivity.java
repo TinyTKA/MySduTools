@@ -6,18 +6,20 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -34,6 +36,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -85,7 +88,17 @@ public class MainActivity extends AppCompatActivity {
     String startOfStudy = "2022年02月20日";
     SharedPreferenceUtils preferenceUtils;
 
+    // 课程详情对话框布局
+    LinearLayout classinfoDetailDialog;
+    TextView classinfoDetail_name;
+    TextView classinfoDetail_teacher;
+    TextView classinfoDetail_room;
+    TextView classinfoDetail_week;
+    // 课程详情对话框
+    AlertDialog.Builder builder;
+    AlertDialog alertDialog;
 
+    SQLUtils sqlUtils;
     PropertiesUtils propertiesUtils = PropertiesUtils.getInstance(MainActivity.this, "values.properties");
     ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
@@ -129,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         //初始化
         init();
     }
@@ -141,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
         screenHeight = dm.heightPixels;
         screenWidth = dm.widthPixels;
 
+        // toolbar
         tb = this.findViewById(R.id.tb);
         mdrawlayout = this.findViewById(R.id.LeftDrag);
         // 周选择器
@@ -150,16 +163,45 @@ public class MainActivity extends AppCompatActivity {
         week_arrow = this.findViewById(R.id.arrow_week);
         kb_layout = this.findViewById(R.id.kb_layout);
 
+
+        // 课程详情对话框初始化
+        classinfoDetailDialog = (LinearLayout) LayoutInflater.from(MainActivity.this).inflate(R.layout.classinfo_detail, null);
+        classinfoDetail_name = classinfoDetailDialog.findViewById(R.id.classinfo_detail_name);
+        classinfoDetail_teacher = classinfoDetailDialog.findViewById(R.id.classinfo_detail_teacher);
+        classinfoDetail_room = classinfoDetailDialog.findViewById(R.id.classinfo_detail_room);
+        classinfoDetail_week = classinfoDetailDialog.findViewById(R.id.classinfo_detail_week);
+        builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("详情");
+        builder.setView(classinfoDetailDialog);
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        alertDialog = builder.create();
+
         //读取开学日期信息
         preferenceUtils = new SharedPreferenceUtils(MainActivity.this, "values");
         //读取学期开始
         propertiesUtils.init();
-        startOfStudy = preferenceUtils.read("startOfStudyYear", "2022") + "年" + preferenceUtils.read("startOfStudyMonth", "02") + "月" + preferenceUtils.read("startOfStudyDay", "20") + "日";
+        // 初始化数据库操作
+        sqlUtils = new SQLUtils(this, "class.db", null, propertiesUtils.readInt("DATABASE_VERSION", 1));
+
+        //获取当前日期
+        String[] nowDate = this.getNowDate();
+        //如果没有设置学期开始日期那么自动设置当前日期为学期开始日期
+        startOfStudy = preferenceUtils.read("startOfStudyYear", nowDate[0]) + "年" + preferenceUtils.read("startOfStudyMonth", nowDate[1]) + "月" + preferenceUtils.read("startOfStudyDay", nowDate[2]) + "日";
         preferenceUtils.commit();
         //获取学期信息
         dateInfo = DateUtils.getDayAndWeek(startOfStudy);
         // 给toolbar添加menu以及监听
-
         tb.inflateMenu(R.menu.toolbarmenu);
         tb.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -198,7 +240,6 @@ public class MainActivity extends AppCompatActivity {
                                     preferenceUtils.save("startOfStudyMonth", monthOfYear + "");
                                     preferenceUtils.save("startOfStudyDay", dayOfMonth + "");
                                     preferenceUtils.commit();
-
                                     dateInfo = DateUtils.getDayAndWeek(startOfStudy);
                                     //重新渲染课表
                                     InitKbList(dateInfo[0]);
@@ -286,8 +327,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("Range")
     private void reShowKb() {
         classDetailList.clear();
-        SQLUtils sqlUtils = new SQLUtils(this, "class.db", null, propertiesUtils.readInt("DATABASE_VERSION", 1));
-        SQLiteDatabase db = sqlUtils.getReadableDatabase();
+//        SQLiteDatabase db = sqlUtils.getReadableDatabase();
         if (sqlUtils.db == null) {
             Toast.makeText(this, "当前暂无课程表，请点击右上角刷新后重试", Toast.LENGTH_SHORT).show();
             return;
@@ -353,15 +393,16 @@ public class MainActivity extends AppCompatActivity {
             String[] weekRan = classDetail.getWeekRan();
             // 连续上课情况
 //            Log.e("", "putClassesIn: " + weekRan.length);
+            // 替换掉所有的中括号以及空格，防止解析错误
             int n = Integer.parseInt(weekRan[0].replaceAll("(\\[|\\]|\\s*)", ""));
             int b = Integer.parseInt(weekRan[weekRan.length - 1].replaceAll("(\\[|\\]|\\s*)", ""));
 //            Log.e("TAG", "putClassesIn: " + n + "    " + b + "  now" + mNowWeek);
             if (n <= mNowWeek && b >= mNowWeek) {
                 if (weekRan.length <= 2) {
-                    // 替换掉所有的中括号以及空格，防止解析错误
                     virtualChildAt.setBackgroundResource(color[random.nextInt(9)]);
                     sb.append(classDetail.getName());
                     sb.append("\n");
+                    sb.append("@");
                     sb.append(classDetail.getRoom());
                     virtualChildAt.setText(sb.toString());
                     sb.delete(0, sb.length());
@@ -373,6 +414,7 @@ public class MainActivity extends AppCompatActivity {
                             virtualChildAt.setBackgroundResource(color[random.nextInt(9)]);
                             sb.append(classDetail.getName());
                             sb.append("\n");
+                            sb.append("@");
                             sb.append(classDetail.getRoom());
                             virtualChildAt.setText(sb.toString());
                             sb.delete(0, sb.length());
@@ -380,23 +422,41 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
-                ShapeTextView finalVirtualChildAt = virtualChildAt;
-                virtualChildAt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                        builder.setTitle("详情");
-                        CharSequence text = finalVirtualChildAt.getText();
-                        builder.setMessage(text);
-                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                            }
-                        });
-                        AlertDialog alertDialog = builder.create();
-                        alertDialog.show();
-                    }
-                });
+//                ShapeTextView finalVirtualChildAt = virtualChildAt;
+//                virtualChildAt.setOnClickListener(new View.OnClickListener() {
+//                    @SuppressLint("Range")
+//                    @Override
+//                    public void onClick(View view) {
+//                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//                        builder.setTitle("详情");
+//                        CharSequence text = finalVirtualChildAt.getText();
+//                        String[] split = text.toString().split("@");
+//                        Log.e("课程详情", "onClick: " + split[0]);
+//                        Cursor cursor = sqlUtils.queryInfo("SELECT * FROM CLASSINFO WHERE classname='" + split[0] + "';", null);
+//                        int count = cursor.getCount();
+//                        if (count == 0) {
+//                            return;
+//                        } else {
+//                            for (int j = 0; j < count; j++) {
+//                                if (cursor.moveToPosition(j)) {
+//                                    Log.e("TAG", "onClick: " + cursor.getString(cursor.getColumnIndex("classname")));
+//                                    Log.e("TAG", "onClick: " + cursor.getString(cursor.getColumnIndex("classname")));
+//
+//                                }
+//                            }
+//
+//                        }
+//
+//                        builder.setMessage(text);
+//                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//                            }
+//                        });
+//                        AlertDialog alertDialog = builder.create();
+//                        alertDialog.show();
+//                    }
+//                });
             }
         }
 
@@ -416,11 +476,51 @@ public class MainActivity extends AppCompatActivity {
             weekend.setHeight(screenHeight / 8);
         }
 
+
+        // 添加长按触发事件
         for (int i = 1; i <= 5; i++) {
             for (int j = 0; j < 7; j++) {
                 ShapeTextView grid = (ShapeTextView) tableRows[i].getVirtualChildAt(j);
                 int finalJ = j;
                 int finalI = i;
+                // 添加点击事件
+
+                grid.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("Range")
+                    @Override
+                    public void onClick(View view) {
+
+                        CharSequence text = grid.getText();
+                        if (text.length() == 0) {
+                            Toast.makeText(MainActivity.this, "当前节没有课，长按添加", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        String[] split = text.toString().split("\n@");
+                        Log.e("课程详情", "onClick: " + split[0]);
+                        Cursor cursor = sqlUtils.queryInfo("SELECT * FROM CLASSINFO WHERE classname='" + split[0] + "';", null);
+                        int count = cursor.getCount();
+                        if (count == 0) {
+                            return;
+                        } else {
+                            for (int j = 0; j < count; j++) {
+                                if (cursor.moveToPosition(j)) {
+                                    classinfoDetail_name.setText(cursor.getString(cursor.getColumnIndex("classname")));
+                                    classinfoDetail_room.setText(cursor.getString(cursor.getColumnIndex("classroom")));
+                                    classinfoDetail_teacher.setText(cursor.getString(cursor.getColumnIndex("teacher")));
+                                    classinfoDetail_week.setText(cursor.getString(cursor.getColumnIndex("weekR")));
+                                    Log.e("TAG", "onClick: " + cursor.getString(cursor.getColumnIndex("classname")));
+                                    Log.e("TAG", "onClick: " + cursor.getString(cursor.getColumnIndex("classroom")));
+                                }
+                            }
+                        }
+
+
+                        alertDialog.show();
+                    }
+                });
+
+
+                // 添加长按触发事件
                 grid.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View view) {
@@ -494,5 +594,31 @@ public class MainActivity extends AppCompatActivity {
         }
         ShapeTextView weekend = (ShapeTextView) tableRows[0].getVirtualChildAt(0);
         weekend.setText(dayOfSpecialWeek[7] + "月");
+    }
+
+
+    /**
+     * 获取当前时间，String[0],[1],[2]依次为年月日
+     *
+     * @return
+     */
+    private String[] getNowDate() {
+        String[] dates = new String[3];
+        Calendar instance = Calendar.getInstance();
+        instance.setTime(new Date());
+        dates[0] = String.valueOf(instance.get(Calendar.YEAR));
+        int month = instance.get(Calendar.MONTH + 1);
+        if (month < 10) {
+            dates[1] = "0" + month;
+        } else {
+            dates[1] = String.valueOf(month);
+        }
+        int day = instance.get(Calendar.DAY_OF_MONTH);
+        if (day < 10) {
+            dates[2] = "0" + day;
+        } else {
+            dates[2] = String.valueOf(day);
+        }
+        return dates;
     }
 }

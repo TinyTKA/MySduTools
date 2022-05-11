@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/day_white_night_black"
+    android:orientation="vertical">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TableRow android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:text="课程名"
+
+                android:textColor="@color/day_black_night_white"
+                android:textSize="@dimen/classinfo_detail_textsize" />
+
+            <TextView
+                android:id="@+id/classinfo_detail_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_underline"
+                android:paddingRight="5dp"
+                android:textColor="@color/day_black_night_white"
+                android:textSize="@dimen/classinfo_detail_textsize" />
+        </TableRow>
+
+        <TableRow android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:text="教室"
+                android:textColor="@color/day_black_night_white"
+                android:textSize="@dimen/classinfo_detail_textsize" />
+
+            <TextView
+                android:id="@+id/classinfo_detail_room"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_underline"
+                android:paddingRight="5dp"
+                android:textColor="@color/day_black_night_white"
+                android:textSize="@dimen/classinfo_detail_textsize" />
+        </TableRow>
+
+        <TableRow android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:text="上课教师"
+                android:textColor="@color/day_black_night_white"
+                android:textSize="@dimen/classinfo_detail_textsize" />
+
+            <TextView
+                android:id="@+id/classinfo_detail_teacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_underline"
+                android:paddingRight="5dp"
+                android:textColor="@color/day_black_night_white"
+                android:textSize="@dimen/classinfo_detail_textsize" />
+        </TableRow>
+
+        <TableRow android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:text="上课周次"
+                android:textColor="@color/day_black_night_white"
+                android:textSize="@dimen/classinfo_detail_textsize" />
+
+            <TextView
+                android:id="@+id/classinfo_detail_week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/text_underline"
+                android:paddingRight="5dp"
+                android:textColor="@color/day_black_night_white"
+                android:textSize="@dimen/classinfo_detail_textsize" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

@@ -12,4 +12,6 @@
     <color name="kbgridtextcolor">#ffffff</color>
     <color name="choseweekbackgroundcolor">#223022</color>
     <color name="kbinfotextcolor">#000000</color>
+    <color name="day_black_night_white">#ffffff</color>
+    <color name="day_white_night_black">#000000</color>
 </resources>

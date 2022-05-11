@@ -166,4 +166,6 @@
     <color name="kbgridtextcolor">#000000</color>
 
     <color name="kbinfotextcolor">#fffafa</color>
+    <color name="day_black_night_white">#000000</color>
+    <color name="day_white_night_black">#ffffff</color>
 </resources>

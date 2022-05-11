@@ -12,6 +12,7 @@
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/drawable/occupiedRomm_background.xml" value="0.175" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/drawable/occupiedroom_background.xml" value="0.227" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/drawable/search_dialog_background.xml" value="0.1755" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/drawable/text_underline.xml" value="0.122" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/drawable/textviewborder.xml" value="0.264" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/activity_about.xml" value="0.264" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/activity_add_class.xml" value="0.248" />
@@ -25,6 +26,7 @@
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/addclass.xml" value="0.264" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/checkbox_yellow_gray.xml" value="0.25885416666666666" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/chose_classroom.xml" value="0.25885416666666666" />
+        <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/classinfo_detail.xml" value="0.2223731884057971" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/datepicker.xml" value="0.2545289855072464" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/eachclassroom.xml" value="0.25885416666666666" />
         <entry key="..\:/MyApp/MySduTools/app/src/main/res/layout/emptyclassroom.xml" value="0.25885416666666666" />

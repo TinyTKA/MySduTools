@@ -37,7 +37,7 @@ import xyz.taouvw.mysdutools.utils.DateUtils;
 import xyz.taouvw.mysdutools.utils.SharedPreferenceUtils;
 
 public class SearchFreeRoomActivity extends AppCompatActivity {
-    private static final String[] TermList = new String[]{"2021-2022-2"};
+    private static final String[] TermList = new String[]{"2021-2022-2", "2021-2022-3", "2022-2023-1", "2022-2023-2"};
     private static final String[] xqList = new String[]{"青岛校区"};
     private static final String[] xqListCode = new String[]{"07"};
     private static final String[] jxlList = new String[]{"振声苑N", "振声苑W", "振声苑E", "会文南楼", "会文北楼"};
@@ -122,6 +122,7 @@ public class SearchFreeRoomActivity extends AppCompatActivity {
                 finish();
             }
         });
+        // 搜索按钮
         search_btn = this.findViewById(R.id.research_btn);
         search_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,7 +134,7 @@ public class SearchFreeRoomActivity extends AppCompatActivity {
                 alertDialog.show();
             }
         });
-
+        // 教室渲染列表
         roomList = haveClassroom.findViewById(R.id.roomList);
         classRoomAdapter = new ClassRoomAdapter(classRoomDetailList);
         roomList.setAdapter(classRoomAdapter);
@@ -152,7 +153,6 @@ public class SearchFreeRoomActivity extends AppCompatActivity {
         choseXq = searchDialog.findViewById(R.id.choseXq);
         choseXq.setDisplayedValues(xqList);
         choseXq.setValue(1);
-
         choseXq.setMinValue(1);
         choseXq.setMaxValue(1);
         choseXq.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
