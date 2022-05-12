@@ -32,6 +32,6 @@
     <dimen name="margin_middle">2dp</dimen>
     <dimen name="kb_text_size">10sp</dimen>
     <dimen name="room_text_size">12sp</dimen>
-    <dimen name="classinfo_detail_textsize">16sp</dimen>
+    <dimen name="classinfo_detail_textsize">14sp</dimen>
 
 </resources>

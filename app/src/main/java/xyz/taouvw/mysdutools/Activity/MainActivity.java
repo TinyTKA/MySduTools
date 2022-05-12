@@ -2,7 +2,6 @@ package xyz.taouvw.mysdutools.Activity;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -170,23 +169,23 @@ public class MainActivity extends AppCompatActivity {
         classinfoDetail_teacher = classinfoDetailDialog.findViewById(R.id.classinfo_detail_teacher);
         classinfoDetail_room = classinfoDetailDialog.findViewById(R.id.classinfo_detail_room);
         classinfoDetail_week = classinfoDetailDialog.findViewById(R.id.classinfo_detail_week);
+
         builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle("详情");
         builder.setView(classinfoDetailDialog);
-        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
 
-            }
-        });
-        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
         alertDialog = builder.create();
-
+        classinfoDetailDialog.findViewById(R.id.class_detail_btn_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+        classinfoDetailDialog.findViewById(R.id.class_detail_btn_confirm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
         //读取开学日期信息
         preferenceUtils = new SharedPreferenceUtils(MainActivity.this, "values");
         //读取学期开始

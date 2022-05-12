@@ -2,11 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="@color/day_white_night_black"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <LinearLayout
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/header_dialog"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_baseline_info_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="课程详情"
+            android:textSize="18sp" />
+    </LinearLayout>
 
     <TableLayout
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical">
@@ -61,6 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.1"
                 android:text="上课教师"
+
                 android:textColor="@color/day_black_night_white"
                 android:textSize="@dimen/classinfo_detail_textsize" />
 
@@ -96,5 +118,34 @@
                 android:textSize="@dimen/classinfo_detail_textsize" />
         </TableRow>
     </TableLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:padding="5dp">
+
+        <Button
+            android:id="@+id/class_detail_btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+
+            android:background="@drawable/btn_cancel_sel"
+            android:text="取消"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/class_detail_btn_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:background="@drawable/btn_confirm"
+            android:text="确定"
+            android:textSize="12sp" />
+
+    </LinearLayout>
 
 </LinearLayout>

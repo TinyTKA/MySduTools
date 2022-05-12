@@ -165,7 +165,6 @@ public class AddClassActivity extends AppCompatActivity {
                 weekRange = stringBuilder.toString();
             }
         });
-        pickWeekBuilder.setTitle("选择周数");
         pickWeekBuilder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

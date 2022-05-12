@@ -19,6 +19,9 @@
         android:theme="@style/Theme.MySduTools"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activity.DdlActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.SearchFreeRoomActivity"
             android:exported="false" />
         <activity

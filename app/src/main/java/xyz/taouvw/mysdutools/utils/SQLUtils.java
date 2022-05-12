@@ -23,9 +23,7 @@ public class SQLUtils extends SQLiteOpenHelper {
     }
 
     public Boolean storeClassInfo(List<ClassDetail> classDetails) {
-
         return true;
-
     }
 
     @Override
@@ -46,7 +44,7 @@ public class SQLUtils extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("ALTER TABLE CLASSINFO ADD classcode VARCHAR(30)");
+//        sqLiteDatabase.execSQL("ALTER TABLE CLASSINFO ADD classcode VARCHAR(30)");
     }
 
     public boolean addClassesInfo(List<ClassDetail> classDetails, Context context) {

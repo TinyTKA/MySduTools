@@ -148,7 +148,7 @@ public class SearchFreeRoomActivity extends AppCompatActivity {
         choseTerm.setDisplayedValues(TermList);
         choseTerm.setValue(1);
         choseTerm.setMinValue(1);
-        choseTerm.setMaxValue(1);
+        choseTerm.setMaxValue(TermList.length);
         choseTerm.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         choseXq = searchDialog.findViewById(R.id.choseXq);
         choseXq.setDisplayedValues(xqList);

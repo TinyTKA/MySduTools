@@ -153,19 +153,41 @@
     <color name="black">#000000</color>
 
 
-    <color name="toolbartextcolor">#000000</color>
+    <color name="toolbartextcolor">#221F1F</color>
     <color name="toolbarcolor">#739AE1</color>
-    <color name="optionTextColor">#ffffff</color>
+    <color name="optionTextColor">#EAE2E2</color>
     <color name="kbColor">#ffffff</color>
-    <color name="allbackgroundcolor">#ffffff</color>
+    <color name="allbackgroundcolor">#F3EEEE</color>
     <color name="choseweekbackgroundcolor">#8fbc8f</color>
-    <color name="WeeklistTextColor">#000000</color>
+    <color name="WeeklistTextColor">#1E1B1B</color>
     <color name="addclassdialog">#7CC5BA</color>
     <color name="addclasshinttextcolor">#2C2B2B</color>
     <color name="choseweekdialogbackgroundcolor">#ffffff</color>
-    <color name="kbgridtextcolor">#000000</color>
+    <color name="kbgridtextcolor">#1B1919</color>
 
     <color name="kbinfotextcolor">#fffafa</color>
-    <color name="day_black_night_white">#000000</color>
-    <color name="day_white_night_black">#ffffff</color>
+    <color name="day_black_night_white">#1B1919</color>
+    <color name="day_white_night_black">#F8F5F5</color>
+    <color name="btn_cancel">#939393</color>
+    <color name="btn_confirm">#EC8383</color>
+
+    <color name="detail_room">#f0fff0</color>
+    <color name="header_dialog">#89B5E1</color>
+    <color name="color_list_1">#f0f8ff</color>
+    <color name="solid_color_list_1">#C39587</color>
+    <color name="color_list_2">#f0f8ff</color>
+    <color name="solid_color_list_2">#86BF7E</color>
+    <color name="color_list_3">#f5f5dc</color>
+    <color name="solid_list_3">#B2BC8F</color>
+    <color name="color_list_4">#f0f8ff</color>
+    <color name="solid_color_list_4">#3DA582</color>
+    <color name="color_list_5">#f0f8ff</color>
+    <color name="solid_color_list_5">#62A3B8</color> <!-- 蜜色 -->
+    <color name="color_list_6">#f0f8ff</color>
+    <color name="solid_color_list_6">#6088ED</color>
+    <color name="color_list_7">#f0f8ff</color>
+    <color name="solid_color_list_7">#D699B5</color>
+    <color name="color_list_8">#f0f8ff</color>
+    <color name="solid_color_list_8">#D3AD69</color>
+    <color name="ddl_header_color">#F8F4A9</color>
 </resources>
