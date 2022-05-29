@@ -190,4 +190,5 @@
     <color name="color_list_8">#f0f8ff</color>
     <color name="solid_color_list_8">#D3AD69</color>
     <color name="ddl_header_color">#F8F4A9</color>
+    <color name="black_text_shadow_color">#505350</color>
 </resources>

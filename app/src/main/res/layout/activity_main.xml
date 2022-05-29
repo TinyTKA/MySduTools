@@ -8,6 +8,7 @@
     tools:context=".Activity.MainActivity"
     tools:openDrawer="start">
 
+    <!-- 主页main布局-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,25 +20,60 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/toolbarcolor"
-            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+            app:navigationIcon="@drawable/ic_baseline_dehaze_24"
             app:subtitle="@string/oneWords"
-
             app:title="@string/mykb">
 
-            <ImageView
-                android:id="@+id/arrow_week"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:paddingLeft="10dp"
-                android:src="@drawable/ic_baseline_expand_less_24" />
+            <!--            <ImageView-->
+            <!--                android:id="@+id/arrow_week"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginLeft="10dp"-->
+            <!--                android:paddingLeft="10dp"-->
+            <!--                android:src="@drawable/ic_baseline_expand_less_24" />-->
         </androidx.appcompat.widget.Toolbar>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/week_selector"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/allbackgroundcolor" />
+
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:background="@drawable/week_btn"
+                android:gravity="center_horizontal|center_vertical"
+                android:padding="2dp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/select_week_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/week_btn_text_underline"
+                    android:text="第1周" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/img_underline"
+                        android:src="@drawable/ic_baseline_edit_24"
+                        app:tint="@color/gray" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
 
         <TableLayout
             android:id="@+id/kb_layout"

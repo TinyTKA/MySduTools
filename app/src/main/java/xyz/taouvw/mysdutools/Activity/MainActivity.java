@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -27,6 +26,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
     TableLayout kb_layout;
     RecyclerView weekRecycle;
     RecyclerView OptionsRecycle;
-    ImageView week_arrow;
     Boolean weekSelectorIsShow = true;
 
 
@@ -96,6 +95,12 @@ public class MainActivity extends AppCompatActivity {
     // 课程详情对话框
     AlertDialog.Builder builder;
     AlertDialog alertDialog;
+
+    // 周列表对话框
+    AppCompatButton selectWeekBtn;
+    LinearLayout weekAlertDialogLayout;
+    AlertDialog.Builder week_AlertdialogBuilder;
+    AlertDialog weekDialog;
 
     SQLUtils sqlUtils;
     PropertiesUtils propertiesUtils = PropertiesUtils.getInstance(MainActivity.this, "values.properties");
@@ -156,12 +161,25 @@ public class MainActivity extends AppCompatActivity {
         tb = this.findViewById(R.id.tb);
         mdrawlayout = this.findViewById(R.id.LeftDrag);
         // 周选择器
-        weekRecycle = this.findViewById(R.id.week_selector);
+
         // 选项选择器
         OptionsRecycle = this.findViewById(R.id.OptionsList);
-        week_arrow = this.findViewById(R.id.arrow_week);
+
         kb_layout = this.findViewById(R.id.kb_layout);
 
+        //
+        weekAlertDialogLayout = (LinearLayout) LayoutInflater.from(MainActivity.this).inflate(R.layout.week_list_recyclelist, null);
+        week_AlertdialogBuilder = new AlertDialog.Builder(MainActivity.this);
+        week_AlertdialogBuilder.setView(weekAlertDialogLayout);
+        weekRecycle = weekAlertDialogLayout.findViewById(R.id.week_selector);
+        weekDialog = week_AlertdialogBuilder.create();
+        selectWeekBtn = this.findViewById(R.id.select_week_btn);
+        selectWeekBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                weekDialog.show();
+            }
+        });
 
         // 课程详情对话框初始化
         classinfoDetailDialog = (LinearLayout) LayoutInflater.from(MainActivity.this).inflate(R.layout.classinfo_detail, null);
@@ -275,21 +293,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // toolbar图标状态
-        tb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (weekSelectorIsShow) {
-                    weekRecycle.setVisibility(View.GONE);
-                    weekSelectorIsShow = !weekSelectorIsShow;
-                    week_arrow.setImageResource(R.drawable.ic_baseline_expand_more_24);
-                } else {
-                    weekRecycle.setVisibility(View.VISIBLE);
-                    weekSelectorIsShow = !weekSelectorIsShow;
-                    week_arrow.setImageResource(R.drawable.ic_baseline_expand_less_24);
-                }
-
-            }
-        });
+//        tb.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (weekSelectorIsShow) {
+//                    weekRecycle.setVisibility(View.GONE);
+//                    weekSelectorIsShow = !weekSelectorIsShow;
+//                    week_arrow.setImageResource(R.drawable.ic_baseline_expand_more_24);
+//                } else {
+//                    weekRecycle.setVisibility(View.VISIBLE);
+//                    weekSelectorIsShow = !weekSelectorIsShow;
+//                    week_arrow.setImageResource(R.drawable.ic_baseline_expand_less_24);
+//                }
+//
+//            }
+//        });
 
 
         //选项选择器渲染
@@ -421,41 +439,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
-//                ShapeTextView finalVirtualChildAt = virtualChildAt;
-//                virtualChildAt.setOnClickListener(new View.OnClickListener() {
-//                    @SuppressLint("Range")
-//                    @Override
-//                    public void onClick(View view) {
-//                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-//                        builder.setTitle("详情");
-//                        CharSequence text = finalVirtualChildAt.getText();
-//                        String[] split = text.toString().split("@");
-//                        Log.e("课程详情", "onClick: " + split[0]);
-//                        Cursor cursor = sqlUtils.queryInfo("SELECT * FROM CLASSINFO WHERE classname='" + split[0] + "';", null);
-//                        int count = cursor.getCount();
-//                        if (count == 0) {
-//                            return;
-//                        } else {
-//                            for (int j = 0; j < count; j++) {
-//                                if (cursor.moveToPosition(j)) {
-//                                    Log.e("TAG", "onClick: " + cursor.getString(cursor.getColumnIndex("classname")));
-//                                    Log.e("TAG", "onClick: " + cursor.getString(cursor.getColumnIndex("classname")));
-//
-//                                }
-//                            }
-//
-//                        }
-//
-//                        builder.setMessage(text);
-//                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialogInterface, int i) {
-//                            }
-//                        });
-//                        AlertDialog alertDialog = builder.create();
-//                        alertDialog.show();
-//                    }
-//                });
             }
         }
 
@@ -555,7 +538,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
                 NowChosenPosition = position;
-                tb.setSubtitle("第" + position + "周");
+                if (position == nowWeek) {
+                    selectWeekBtn.setText("第" + position + "周 (本周)");
+                } else {
+                    selectWeekBtn.setText("第" + position + "周");
+                }
+                weekDialog.dismiss();
+//                tb.setSubtitle("第" + position + "周");
                 putClassesIn(classDetailList, position);
                 getDayOfWeek(position);
                 if (LastshapeTextView != null) {
@@ -575,7 +564,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        weekRecycle.addItemDecoration(new DividerItemDecoration(MainActivity.this, DividerItemDecoration.VERTICAL));
         weekRecycle.setLayoutManager(layoutManager);
         weekRecycle.setAdapter(weekAdapter);
     }
