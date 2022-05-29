@@ -51,10 +51,10 @@
             android:exported="false" />
 
         <service android:name="com.amap.api.location.APSService" />
-
+        <!-- 高德地图api接口key,因为私有所以开源使用你自己申请的，不麻烦-->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="183c717cda0b83b0fe88b404351f94cf" />
+            android:value="这里替换为你自己的" />
     </application>
 
 </manifest>
